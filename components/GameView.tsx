@@ -114,18 +114,18 @@ const GameView: React.FC = () => {
       </div>
       
       {/* Header */}
-      <header className="h-20 border-b border-cyan-900/50 bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-8 z-10">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-cyan-500 rounded-sm animate-pulse flex items-center justify-center">
+      <header className="h-16 border-b border-cyan-900/50 bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-6 z-10">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 bg-cyan-500 rounded-sm animate-pulse flex items-center justify-center">
             <span className="text-slate-950 font-black">AI</span>
           </div>
           <div>
-            <h1 className="text-xl font-black tracking-tighter uppercase">Finance Mission Control</h1>
+            <h1 className="text-lg font-black tracking-tighter uppercase">Finance Mission Control</h1>
             <p className="text-[10px] text-cyan-700 font-bold">M&S DIGITAL TRANSFORMATION // SECTOR: MANCHESTER</p>
           </div>
         </div>
         
-        <div className="flex gap-8">
+        <div className="flex gap-6 scale-90 origin-right">
           <StatBox label="DATA INTEGRITY" value={missionState.dataIntegrity} color="cyan" />
           <StatBox label="AI READINESS" value={missionState.aiReadiness} color="emerald" />
           <StatBox label="EFFICIENCY" value={missionState.efficiency} color="violet" />
@@ -135,7 +135,7 @@ const GameView: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 relative flex">
         {/* Left Sidebar - Logs */}
-        <aside className="w-64 border-r border-cyan-900/30 bg-slate-900/40 p-4 flex flex-col gap-4">
+        <aside className="w-56 border-r border-cyan-900/30 bg-slate-900/40 p-3 flex flex-col gap-3">
           <h2 className="text-xs font-black text-cyan-700 border-b border-cyan-900/30 pb-2">MISSION LOGS</h2>
           <div className="flex-1 overflow-hidden flex flex-col gap-2">
             {logs.map((log, i) => (
@@ -205,15 +205,15 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, s)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.15, zIndex: 100 }}
-                className={`relative w-64 h-40 rounded-xl border-2 cursor-grab active:cursor-grabbing transition-all duration-500 overflow-hidden group
+                className={`relative w-56 h-32 rounded-xl border-2 cursor-grab active:cursor-grabbing transition-all duration-500 overflow-hidden group
                   ${s.status === 'completed' ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.3)]' : 
                     s.status === 'available' ? 'bg-slate-900 border-cyan-500/60 shadow-[0_0_20px_rgba(34,211,238,0.15)]' : 
                     'bg-slate-950 border-slate-800 opacity-20 cursor-not-allowed'}`}
               >
                 {/* Preview Content */}
-                <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                <div className="absolute inset-0 p-4 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
-                    <span className="text-4xl drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">{s.icon}</span>
+                    <span className="text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">{s.icon}</span>
                     <div className={`w-3 h-3 rounded-full shadow-lg ${s.status === 'completed' ? 'bg-emerald-500 shadow-emerald-500/50' : s.status === 'available' ? 'bg-cyan-500 animate-pulse shadow-cyan-500/50' : 'bg-slate-700'}`} />
                   </div>
                   <div>
@@ -243,13 +243,13 @@ const GameView: React.FC = () => {
         </section>
 
         {/* Right Sidebar - Details */}
-        <aside className="w-80 border-l border-cyan-900/30 bg-slate-900/40 p-6 flex flex-col gap-6">
-          <div className="p-4 border border-cyan-900/50 rounded-lg bg-slate-950/50">
+        <aside className="w-72 border-l border-cyan-900/30 bg-slate-900/40 p-5 flex flex-col gap-5">
+          <div className="p-3 border border-cyan-900/50 rounded-lg bg-slate-950/50">
             <h3 className="text-xs font-black mb-4 flex items-center gap-2">
               <span className="w-2 h-2 bg-cyan-500 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-[13px] text-slate-300 leading-relaxed">
               Analyze all strategic sectors to synchronize the AI-Driven Finance roadmap for FY27.
             </p>
           </div>
@@ -284,7 +284,7 @@ const GameView: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="h-10 border-t border-cyan-900/50 bg-slate-900/80 flex items-center justify-between px-8 text-[10px] font-bold text-cyan-800">
+      <footer className="h-9 border-t border-cyan-900/50 bg-slate-900/80 flex items-center justify-between px-6 text-[10px] font-bold text-cyan-800">
         <div>SECURE TERMINAL // ID: MCR-FIN-2026</div>
         <div className="flex gap-4">
           <span>LAT: 53.4808° N</span>
