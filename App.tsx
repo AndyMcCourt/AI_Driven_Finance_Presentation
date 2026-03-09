@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import GameView from './components/GameView';
 
+const LAUNCH_ANIMATION_MS = 1400;
+
 const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
+  const [isLaunching, setIsLaunching] = useState(false);
+
+  const handleLaunch = () => {
+    if (isLaunching) return;
+
+    setIsLaunching(true);
+    window.setTimeout(() => {
+      onStart();
+    }, LAUNCH_ANIMATION_MS);
+  };
+
   return (
     <div className="w-screen h-screen bg-[#01030a] flex items-center justify-center px-6">
       <div className="w-full max-w-3xl rounded-2xl border border-cyan-400/25 bg-slate-950/85 shadow-[0_0_90px_rgba(8,145,178,0.25)] p-8 md:p-10 text-cyan-50">
@@ -25,18 +39,28 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
             </div>
             <span className="text-xl font-medium">Digital Finance Transformation</span>
           </div>
-          <div className="grid grid-cols-3 text-center text-[#12343f] text-sm">
+          <div className="grid grid-cols-3 text-center text-[#12343f] text-sm relative">
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Fix the Foundations</div>
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">NextGen Finance Systems</div>
-            <div className="bg-[#c7dde3] py-2.5 font-medium">AI Driven Finance</div>
+            <div className="bg-[#c7dde3] py-2.5 font-medium relative">AI Driven Finance</div>
+
+            {isLaunching && (
+              <motion.div
+                initial={{ y: -82, scale: 0.8, opacity: 1 }}
+                animate={{ y: [0, 0], scale: [1, 1, 8], opacity: [1, 1, 0] }}
+                transition={{ duration: LAUNCH_ANIMATION_MS / 1000, times: [0, 0.45, 1], ease: 'easeInOut' }}
+                className="pointer-events-none absolute right-[1.1%] top-[10%] h-[80%] w-[31.8%] border-4 border-red-500 shadow-[0_0_24px_rgba(239,68,68,0.9)]"
+              />
+            )}
           </div>
         </div>
 
         <button
-          onClick={onStart}
-          className="w-full sm:w-auto px-8 py-3 rounded-md bg-cyan-400 text-slate-950 font-bold tracking-wide hover:bg-cyan-300 transition-colors"
+          onClick={handleLaunch}
+          disabled={isLaunching}
+          className="w-full sm:w-auto px-8 py-3 rounded-md bg-cyan-400 text-slate-950 font-bold tracking-wide hover:bg-cyan-300 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Launch Experience
+          Launch
         </button>
       </div>
     </div>
