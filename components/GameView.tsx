@@ -5,17 +5,10 @@ import { PresentationSegment, MissionState } from '../types';
 import PresentationModal from './PresentationModal';
 
 const ACTIVATION_RADIUS = 300;
-const NEXT_NODE_ORBIT_RADIUS = 410;
-
-const NEXT_NODE_ANGLES = [
-  -Math.PI * 0.9,
-  -Math.PI * 0.62,
-  -Math.PI * 0.35,
-  -Math.PI * 0.08,
-  Math.PI * 0.22,
-  Math.PI * 0.46,
-  Math.PI * 0.72,
-];
+const NEXT_NODE_ORBIT_RADIUS_X = 560;
+const NEXT_NODE_ORBIT_RADIUS_Y = 280;
+const SWARM_RADIUS_X = 760;
+const SWARM_RADIUS_Y = 460;
 
 const PSEUDO_NODE_LABELS = [
   'Context Mesh',
@@ -49,11 +42,15 @@ const GameView: React.FC = () => {
   const nextNodePosition = useMemo(() => {
     if (nextAvailableIndex < 0) return null;
 
-    const angle = NEXT_NODE_ANGLES[nextAvailableIndex % NEXT_NODE_ANGLES.length];
+    const startsOnRight = nextAvailableIndex % 2 === 0;
+    const side = startsOnRight ? 1 : -1;
+    const cycle = Math.floor(nextAvailableIndex / 2);
+    const horizontalBias = [0.96, 0.88, 0.93, 0.84, 0.91, 0.87];
+    const verticalBias = [-0.46, -0.24, 0.12, 0.35, -0.31, 0.22, 0.44];
 
     return {
-      x: Math.cos(angle) * NEXT_NODE_ORBIT_RADIUS,
-      y: Math.sin(angle) * NEXT_NODE_ORBIT_RADIUS,
+      x: side * NEXT_NODE_ORBIT_RADIUS_X * horizontalBias[cycle % horizontalBias.length],
+      y: NEXT_NODE_ORBIT_RADIUS_Y * verticalBias[(cycle + (startsOnRight ? 0 : 2)) % verticalBias.length],
     };
   }, [nextAvailableIndex]);
 
@@ -64,16 +61,18 @@ const GameView: React.FC = () => {
         ...segments
           .filter((segment) => segment.id !== nextAvailableSegment?.id)
           .map((segment) => ({ id: segment.id, label: segment.title, isReal: true, status: segment.status })),
-      ].map((node, index) => {
-        const angle = (index / 14) * Math.PI * 2;
-        const radius = 315 + (index % 4) * 42;
+      ].map((node, index, allNodes) => {
+        const totalNodes = allNodes.length;
+        const angle = (index / totalNodes) * Math.PI * 2;
+        const xSpread = SWARM_RADIUS_X - (index % 5) * 58;
+        const ySpread = SWARM_RADIUS_Y - (index % 4) * 52;
         const randomDirectionAngle = ((index * 47) % 360) * (Math.PI / 180);
-        const randomDriftMagnitude = 34 + ((index * 19) % 5) * 12;
+        const randomDriftMagnitude = 38 + ((index * 19) % 5) * 12;
 
         return {
           ...node,
-          xOffset: Math.cos(angle) * radius,
-          yOffset: Math.sin(angle) * radius,
+          xOffset: Math.cos(angle) * xSpread + Math.sin(index * 1.8) * 44,
+          yOffset: Math.sin(angle) * ySpread + Math.cos(index * 1.4) * 38,
           driftX: Math.cos(randomDirectionAngle) * randomDriftMagnitude,
           driftY: Math.sin(randomDirectionAngle) * randomDriftMagnitude,
           duration: 9 + (index % 5) * 1.5,
