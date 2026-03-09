@@ -5,7 +5,7 @@ import { PresentationSegment, MissionState } from '../types';
 import PresentationModal from './PresentationModal';
 
 const ACTIVATION_RADIUS = 300;
-const NEXT_NODE_ORBIT_RADIUS = 380;
+const NEXT_NODE_ORBIT_RADIUS = 410;
 
 const NEXT_NODE_ANGLES = [
   -Math.PI * 0.9,
@@ -68,13 +68,15 @@ const GameView: React.FC = () => {
       ].map((node, index) => {
         const angle = (index / 14) * Math.PI * 2;
         const radius = 315 + (index % 4) * 42;
+        const randomDirectionAngle = ((index * 47) % 360) * (Math.PI / 180);
+        const randomDriftMagnitude = 34 + ((index * 19) % 5) * 12;
 
         return {
           ...node,
           xOffset: Math.cos(angle) * radius,
           yOffset: Math.sin(angle) * radius,
-          driftX: (index % 2 === 0 ? 1 : -1) * (36 + (index % 3) * 14),
-          driftY: (index % 2 === 0 ? -1 : 1) * (30 + (index % 4) * 11),
+          driftX: Math.cos(randomDirectionAngle) * randomDriftMagnitude,
+          driftY: Math.sin(randomDirectionAngle) * randomDriftMagnitude,
           duration: 9 + (index % 5) * 1.5,
         };
       }),
