@@ -10,11 +10,20 @@ View your app in AI Studio: https://ai.studio/apps/82bb277c-c698-41be-b6b0-13233
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
+
+## Deploy to GitHub Pages
+
+This repo now includes a GitHub Actions workflow that builds and deploys `dist/` to GitHub Pages.
+
+1. In GitHub, open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Push to the `main` branch (or run the workflow manually from **Actions**).
+4. The site will be published to your repository's Pages URL.
+
+The Vite config uses `base: './'` so built assets resolve correctly when hosted on GitHub Pages project URLs.
