@@ -11,18 +11,24 @@ const BASE_SWARM_RADIUS_X = 760;
 const BASE_SWARM_RADIUS_Y = 460;
 
 const PSEUDO_NODE_LABELS = [
-  'Context Mesh',
-  'Variance Beacon',
+  'Variance Engine',
+  'Forecast Model',
   'Ledger Twin',
-  'Policy Thread',
-  'Signal Drift',
-  'Insight Pulse',
-  'Trust Vector',
-  'Forecast Echo',
-  'Control Loop',
-  'Margin Stream',
-  'Audit Orbit',
-  'Ops Hologram',
+  'Anomaly Detector',
+  'Scenario Engine',
+  'Signal Processor',
+  'Margin Predictor',
+  'Control Monitor',
+  'Lineage Tracker',
+  'Policy Engine',
+  'Liquidity Model',
+  'Cost Driver Model',
+  'Revenue Detector',
+  'Narrative Generator',
+  'Risk Analyzer',
+  'Cashflow Predictor',
+  'Governance Monitor',
+  'Insight Synthesizer'
 ];
 
 const GameView: React.FC = () => {
@@ -181,8 +187,8 @@ const GameView: React.FC = () => {
             <span className="text-cyan-200 font-black tracking-tight">AI</span>
           </div>
           <div>
-            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">Finance Operations Console</h1>
-            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL TRANSFORMATION</p>
+            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Driven Finance Console</h1>
+            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL FINANCE TRANSFORMATION</p>
           </div>
         </div>
 
