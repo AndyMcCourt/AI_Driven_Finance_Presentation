@@ -242,11 +242,11 @@ const GameView: React.FC = () => {
               />
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-8">
-                <div className={`text-xs lg:text-sm font-black uppercase tracking-[0.28em] mb-3 px-3 py-1 rounded-full border transition-colors ${isDraggingOverCenter ? 'text-cyan-50 bg-cyan-200/20 border-cyan-100/70' : 'text-cyan-100 bg-cyan-500/10 border-cyan-200/35'}`}>
+                <div className={`text-base lg:text-xl font-black uppercase tracking-[0.2em] mb-3 px-3 py-1 rounded-full border transition-colors ${isDraggingOverCenter ? 'text-cyan-50 bg-cyan-200/20 border-cyan-100/70' : 'text-cyan-100 bg-cyan-500/10 border-cyan-200/35'}`}>
                   {isDraggingOverCenter ? 'Release to Sync' : 'Activation Zone'}
                 </div>
                 <div className={`w-32 h-[3px] mb-6 rounded-full transition-all ${isDraggingOverCenter ? 'bg-cyan-100 shadow-[0_0_20px_rgba(125,211,252,0.95)]' : 'bg-cyan-100/55'}`} />
-                <div className={`text-xs lg:text-sm max-w-[280px] uppercase leading-relaxed font-bold tracking-[0.16em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
+                <div className={`text-sm lg:text-lg max-w-[320px] uppercase leading-relaxed font-bold tracking-[0.12em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
                   Drop node inside this circle to launch the synchronized briefing overlay.
                 </div>
               </div>
@@ -283,12 +283,12 @@ const GameView: React.FC = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-cyan-200/80 shadow-[0_0_12px_rgba(165,243,252,0.7)]" />
                   </div>
                   <div>
-                    <div className="text-xs font-black uppercase tracking-[0.12em] truncate mb-2 text-cyan-100/75">{node.label}</div>
+                    <div className="text-lg font-black uppercase tracking-[0.08em] truncate mb-2 text-cyan-100/75">{node.label}</div>
                     <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/25">
                       <div className="h-full bg-cyan-300/35" style={{ width: node.isReal && node.status === 'completed' ? '100%' : '34%' }} />
                     </div>
                     {node.isReal && (
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-cyan-200/55">{node.status === 'completed' ? 'Synced' : 'Queued'}</div>
+                      <div className="mt-1 text-sm uppercase tracking-[0.1em] text-cyan-200/55">{node.status === 'completed' ? 'Synced' : 'Queued'}</div>
                     )}
                   </div>
                 </div>
@@ -305,7 +305,7 @@ const GameView: React.FC = () => {
                 transform: `translate(calc(-50% + ${nextNodePosition.x}px), calc(-50% + ${nextNodePosition.y}px))`,
               }}
             >
-              <div className="text-xs font-black text-cyan-200/80 uppercase tracking-[0.2em] text-center border-b border-cyan-300/40 pb-2">Next Activation Node</div>
+              <div className="text-base lg:text-lg font-black text-cyan-200/80 uppercase tracking-[0.15em] text-center border-b border-cyan-300/40 pb-2">Next Activation Node</div>
               <motion.div
                 key={nextAvailableSegment.id}
                 drag
@@ -336,7 +336,7 @@ const GameView: React.FC = () => {
                     <div className="w-3 h-3 rounded-full bg-cyan-200 animate-pulse shadow-[0_0_16px_rgba(165,243,252,0.9)]" />
                   </div>
                   <div>
-                    <div className="text-xs font-black uppercase tracking-[0.12em] truncate mb-2 text-cyan-100">{nextAvailableSegment.title}</div>
+                    <div className="text-lg font-black uppercase tracking-[0.08em] truncate mb-2 text-cyan-100">{nextAvailableSegment.title}</div>
                     <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/35">
                       <motion.div initial={{ width: 0 }} animate={{ width: '34%' }} className="h-full bg-cyan-300/60" />
                     </div>
