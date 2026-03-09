@@ -5,6 +5,17 @@ import { PresentationSegment, MissionState } from '../types';
 import PresentationModal from './PresentationModal';
 
 const ACTIVATION_RADIUS = 300;
+const NEXT_NODE_ORBIT_RADIUS = 380;
+
+const NEXT_NODE_ANGLES = [
+  -Math.PI * 0.9,
+  -Math.PI * 0.62,
+  -Math.PI * 0.35,
+  -Math.PI * 0.08,
+  Math.PI * 0.22,
+  Math.PI * 0.46,
+  Math.PI * 0.72,
+];
 
 const PSEUDO_NODE_LABELS = [
   'Context Mesh',
@@ -34,6 +45,18 @@ const GameView: React.FC = () => {
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
 
   const nextAvailableSegment = segments.find((segment) => segment.status === 'available') ?? null;
+  const nextAvailableIndex = segments.findIndex((segment) => segment.status === 'available');
+
+  const nextNodePosition = useMemo(() => {
+    if (nextAvailableIndex < 0) return null;
+
+    const angle = NEXT_NODE_ANGLES[nextAvailableIndex % NEXT_NODE_ANGLES.length];
+
+    return {
+      x: Math.cos(angle) * NEXT_NODE_ORBIT_RADIUS,
+      y: Math.sin(angle) * NEXT_NODE_ORBIT_RADIUS,
+    };
+  }, [nextAvailableIndex]);
 
   const swarmNodes = useMemo(
     () =>
@@ -193,21 +216,26 @@ const GameView: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <motion.div
               animate={{ scale: isDraggingOverCenter ? 1.06 : 1, opacity: isDraggingOverCenter ? 1 : 0.75 }}
-              className="w-[520px] h-[520px] rounded-full border border-cyan-300/30 bg-cyan-400/5 backdrop-blur-sm shadow-[0_0_120px_rgba(34,211,238,0.16)] relative"
+              className="w-[520px] h-[520px] rounded-full border-2 border-cyan-200/55 bg-cyan-400/10 backdrop-blur-sm shadow-[0_0_140px_rgba(34,211,238,0.24)] relative"
             >
+              <motion.div
+                animate={{ opacity: [0.4, 0.85, 0.4], scale: [0.96, 1, 0.96] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-4 rounded-full border border-cyan-100/50"
+              />
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 9, ease: 'linear' }}
-                className="absolute inset-10 rounded-full border border-dashed border-cyan-300/25"
+                className="absolute inset-10 rounded-full border border-dashed border-cyan-100/40"
               />
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-8">
-                <div className={`text-xs font-black uppercase tracking-[0.55em] mb-3 transition-colors ${isDraggingOverCenter ? 'text-cyan-200' : 'text-cyan-300/70'}`}>
+                <div className={`text-[11px] font-black uppercase tracking-[0.4em] mb-3 px-3 py-1 rounded-full border transition-colors ${isDraggingOverCenter ? 'text-cyan-50 bg-cyan-200/20 border-cyan-100/70' : 'text-cyan-100 bg-cyan-500/10 border-cyan-200/35'}`}>
                   {isDraggingOverCenter ? 'Release to Sync' : 'Gesture Activation Zone'}
                 </div>
-                <div className={`w-28 h-[2px] mb-6 transition-all ${isDraggingOverCenter ? 'bg-cyan-200 shadow-[0_0_18px_rgba(125,211,252,0.9)]' : 'bg-cyan-300/40'}`} />
-                <div className={`text-[10px] max-w-[220px] uppercase leading-relaxed font-bold tracking-[0.2em] transition-colors ${isDraggingOverCenter ? 'text-cyan-100' : 'text-cyan-300/50'}`}>
-                  Drag data nodes into the hub to open synchronized briefing overlays.
+                <div className={`w-32 h-[3px] mb-6 rounded-full transition-all ${isDraggingOverCenter ? 'bg-cyan-100 shadow-[0_0_20px_rgba(125,211,252,0.95)]' : 'bg-cyan-100/55'}`} />
+                <div className={`text-[10px] max-w-[240px] uppercase leading-relaxed font-bold tracking-[0.22em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
+                  Drop node inside this circle to launch the synchronized briefing overlay.
                 </div>
               </div>
             </motion.div>
@@ -256,9 +284,16 @@ const GameView: React.FC = () => {
             ))}
           </div>
 
-          {nextAvailableSegment && (
-            <div className="absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20">
-              <div className="text-[10px] font-black text-cyan-200/80 uppercase tracking-[0.25em] text-right border-b border-cyan-300/40 pb-2">Next Activation Node</div>
+          {nextAvailableSegment && nextNodePosition && (
+            <div
+              className="absolute flex flex-col gap-6 z-20 pointer-events-none"
+              style={{
+                left: '50%',
+                top: '50%',
+                transform: `translate(calc(-50% + ${nextNodePosition.x}px), calc(-50% + ${nextNodePosition.y}px))`,
+              }}
+            >
+              <div className="text-[10px] font-black text-cyan-200/80 uppercase tracking-[0.25em] text-center border-b border-cyan-300/40 pb-2">Next Activation Node</div>
               <motion.div
                 key={nextAvailableSegment.id}
                 drag
@@ -267,10 +302,10 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                initial={{ opacity: 0, scale: 0.7, x: -420, y: 0 }}
+                initial={{ opacity: 0, scale: 0.7, x: 0, y: 0 }}
                 animate={{ opacity: 1, scale: [1, 1.04, 1], x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 } }}
-                className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)]"
+                className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)] pointer-events-auto"
               >
                 <motion.div
                   className="absolute inset-0 rounded-xl border border-cyan-200/40"
