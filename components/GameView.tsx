@@ -50,13 +50,29 @@ const GameView: React.FC = () => {
           ...node,
           xOffset: Math.cos(angle) * radius,
           yOffset: Math.sin(angle) * radius,
-          driftX: (index % 2 === 0 ? 1 : -1) * (28 + (index % 3) * 11),
-          driftY: (index % 2 === 0 ? -1 : 1) * (22 + (index % 4) * 9),
-          duration: 14 + (index % 5) * 2,
+          driftX: (index % 2 === 0 ? 1 : -1) * (36 + (index % 3) * 14),
+          driftY: (index % 2 === 0 ? -1 : 1) * (30 + (index % 4) * 11),
+          duration: 9 + (index % 5) * 1.5,
         };
       }),
     [nextAvailableSegment?.id, segments],
   );
+
+  const nextActivationOrigin = useMemo(() => {
+    if (!nextAvailableSegment) {
+      return { x: 0, y: 0 };
+    }
+
+    const segmentIndex = segments.findIndex((segment) => segment.id === nextAvailableSegment.id);
+    const virtualIndex = PSEUDO_NODE_LABELS.length + Math.max(segmentIndex, 0);
+    const angle = (virtualIndex / 14) * Math.PI * 2;
+    const radius = 315 + (virtualIndex % 4) * 42;
+
+    return {
+      x: Math.cos(angle) * radius,
+      y: Math.sin(angle) * radius,
+    };
+  }, [nextAvailableSegment, segments]);
 
   const addLog = (message: string) => {
     setLogs((prev) => [message, ...prev].slice(0, 10));
@@ -265,11 +281,16 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                initial={{ opacity: 0, scale: 0.88, x: 50 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ duration: 0.45, ease: 'easeOut' }}
+                initial={{ opacity: 0, scale: 0.65, x: nextActivationOrigin.x, y: nextActivationOrigin.y }}
+                animate={{ opacity: 1, scale: [1, 1.04, 1], x: 0, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' } }}
                 className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)]"
               >
+                <motion.div
+                  className="absolute inset-0 rounded-xl border border-cyan-200/40"
+                  animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.1, 0.45] }}
+                  transition={{ duration: 1.3, repeat: Infinity, ease: 'easeOut' }}
+                />
                 <div className="absolute inset-0 p-4 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
                     <span className="text-4xl drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]">{nextAvailableSegment.icon}</span>
