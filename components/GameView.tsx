@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SEGMENTS, MISSION_CONFIG } from '../constants';
 import { PresentationSegment, MissionState } from '../types';
 import PresentationModal from './PresentationModal';
 
 const ACTIVATION_RADIUS = 300;
+
+const PSEUDO_NODE_LABELS = [
+  'Context Mesh',
+  'Variance Beacon',
+  'Ledger Twin',
+  'Policy Thread',
+  'Signal Drift',
+  'Insight Pulse',
+  'Trust Vector',
+  'Forecast Echo',
+  'Control Loop',
+  'Margin Stream',
+  'Audit Orbit',
+  'Ops Hologram',
+];
 
 const GameView: React.FC = () => {
   const [segments, setSegments] = useState<PresentationSegment[]>(SEGMENTS);
@@ -17,6 +32,31 @@ const GameView: React.FC = () => {
   const [logs, setLogs] = useState<string[]>(['SYSTEM INITIALIZED', 'WAITING FOR GESTURE...']);
   const [isMissionComplete, setIsMissionComplete] = useState(false);
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
+
+  const nextAvailableSegment = segments.find((segment) => segment.status === 'available') ?? null;
+
+  const swarmNodes = useMemo(
+    () =>
+      [
+        ...PSEUDO_NODE_LABELS.map((label, index) => ({ id: `pseudo-${index}`, label, isReal: false })),
+        ...segments
+          .filter((segment) => segment.id !== nextAvailableSegment?.id)
+          .map((segment) => ({ id: segment.id, label: segment.title, isReal: true, status: segment.status })),
+      ].map((node, index) => {
+        const angle = (index / 14) * Math.PI * 2;
+        const radius = 315 + (index % 4) * 42;
+
+        return {
+          ...node,
+          xOffset: Math.cos(angle) * radius,
+          yOffset: Math.sin(angle) * radius,
+          driftX: (index % 2 === 0 ? 1 : -1) * (28 + (index % 3) * 11),
+          driftY: (index % 2 === 0 ? -1 : 1) * (22 + (index % 4) * 9),
+          duration: 14 + (index % 5) * 2,
+        };
+      }),
+    [nextAvailableSegment?.id, segments],
+  );
 
   const addLog = (message: string) => {
     setLogs((prev) => [message, ...prev].slice(0, 10));
@@ -184,33 +224,61 @@ const GameView: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <div className="absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-8 z-20">
-            <div className="text-[10px] font-black text-cyan-300/70 uppercase tracking-[0.25em] text-right border-b border-cyan-400/25 pb-2">Strategic Data Nodes</div>
-            {segments.map((s) => (
+          <div className="absolute inset-0 pointer-events-none z-[5]">
+            {swarmNodes.map((node) => (
               <motion.div
-                key={s.id}
+                key={node.id}
+                initial={{ x: node.xOffset, y: node.yOffset }}
+                animate={{
+                  x: [node.xOffset - node.driftX, node.xOffset + node.driftX, node.xOffset - node.driftX],
+                  y: [node.yOffset - node.driftY, node.yOffset + node.driftY, node.yOffset - node.driftY],
+                  opacity: [0.22, 0.45, 0.22],
+                }}
+                transition={{ duration: node.duration, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-1/2 left-1/2"
+              >
+                <div
+                  className={`rounded-full border px-4 py-2 text-[10px] uppercase tracking-[0.18em] whitespace-nowrap
+                  ${node.isReal
+                    ? 'border-cyan-300/35 bg-cyan-400/10 text-cyan-100/55'
+                    : 'border-cyan-300/20 bg-cyan-400/5 text-cyan-100/40'}`}
+                >
+                  {node.label}
+                  {node.isReal && (
+                    <span className="ml-2 text-[8px] text-cyan-200/45">
+                      {node.status === 'completed' ? 'SYNCED' : 'QUEUED'}
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {nextAvailableSegment && (
+            <div className="absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20">
+              <div className="text-[10px] font-black text-cyan-200/80 uppercase tracking-[0.25em] text-right border-b border-cyan-300/40 pb-2">Next Activation Node</div>
+              <motion.div
+                key={nextAvailableSegment.id}
                 drag
                 dragSnapToOrigin
                 onDrag={handleDrag}
-                onDragEnd={(e, info) => handleDragEnd(e, info, s)}
-                whileHover={{ scale: 1.04, zIndex: 50 }}
+                onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
+                whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                className={`relative w-56 h-32 rounded-xl border cursor-grab active:cursor-grabbing transition-all duration-500 overflow-hidden group backdrop-blur-md
-                ${s.status === 'completed'
-                    ? 'bg-cyan-300/15 border-cyan-200/70 shadow-[0_0_30px_rgba(34,211,238,0.32)]'
-                    : s.status === 'available'
-                      ? 'bg-slate-900/65 border-cyan-300/45 shadow-[0_0_28px_rgba(34,211,238,0.2)]'
-                      : 'bg-slate-950/70 border-slate-700/40 opacity-25 cursor-not-allowed'}`}
+                initial={{ opacity: 0, scale: 0.88, x: 50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.45, ease: 'easeOut' }}
+                className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)]"
               >
                 <div className="absolute inset-0 p-4 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
-                    <span className="text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.55)]">{s.icon}</span>
-                    <div className={`w-3 h-3 rounded-full shadow-lg ${s.status === 'completed' ? 'bg-emerald-400 shadow-emerald-400/60' : s.status === 'available' ? 'bg-cyan-300 animate-pulse shadow-cyan-300/60' : 'bg-slate-600'}`} />
+                    <span className="text-4xl drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]">{nextAvailableSegment.icon}</span>
+                    <div className="w-3 h-3 rounded-full bg-cyan-200 animate-pulse shadow-[0_0_16px_rgba(165,243,252,0.9)]" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.15em] truncate mb-2 text-cyan-100/90">{s.title}</div>
-                    <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-400/20">
-                      <motion.div initial={{ width: 0 }} animate={{ width: s.status === 'completed' ? '100%' : '0%' }} className={`h-full ${s.status === 'completed' ? 'bg-emerald-400' : 'bg-cyan-300/20'} transition-all duration-1000`} />
+                    <div className="text-[10px] font-black uppercase tracking-[0.15em] truncate mb-2 text-cyan-100">{nextAvailableSegment.title}</div>
+                    <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/35">
+                      <motion.div initial={{ width: 0 }} animate={{ width: '34%' }} className="h-full bg-cyan-300/60" />
                     </div>
                   </div>
                 </div>
@@ -218,8 +286,8 @@ const GameView: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-300/20 via-transparent to-cyan-300/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <motion.div animate={{ y: ['-100%', '180%'] }} transition={{ duration: 2.2, repeat: Infinity, ease: 'linear' }} className="absolute inset-x-0 h-[2px] bg-cyan-300/25" />
               </motion.div>
-            ))}
-          </div>
+            </div>
+          )}
         </section>
 
         <aside className="w-72 border-l border-cyan-400/15 bg-slate-900/20 backdrop-blur-md p-5 flex flex-col gap-5">
