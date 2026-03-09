@@ -58,22 +58,6 @@ const GameView: React.FC = () => {
     [nextAvailableSegment?.id, segments],
   );
 
-  const nextActivationOrigin = useMemo(() => {
-    if (!nextAvailableSegment) {
-      return { x: 0, y: 0 };
-    }
-
-    const segmentIndex = segments.findIndex((segment) => segment.id === nextAvailableSegment.id);
-    const virtualIndex = PSEUDO_NODE_LABELS.length + Math.max(segmentIndex, 0);
-    const angle = (virtualIndex / 14) * Math.PI * 2;
-    const radius = 315 + (virtualIndex % 4) * 42;
-
-    return {
-      x: Math.cos(angle) * radius,
-      y: Math.sin(angle) * radius,
-    };
-  }, [nextAvailableSegment, segments]);
-
   const addLog = (message: string) => {
     setLogs((prev) => [message, ...prev].slice(0, 10));
   };
@@ -253,18 +237,20 @@ const GameView: React.FC = () => {
                 transition={{ duration: node.duration, repeat: Infinity, ease: 'easeInOut' }}
                 className="absolute top-1/2 left-1/2"
               >
-                <div
-                  className={`rounded-full border px-4 py-2 text-[10px] uppercase tracking-[0.18em] whitespace-nowrap
-                  ${node.isReal
-                    ? 'border-cyan-300/35 bg-cyan-400/10 text-cyan-100/55'
-                    : 'border-cyan-300/20 bg-cyan-400/5 text-cyan-100/40'}`}
-                >
-                  {node.label}
-                  {node.isReal && (
-                    <span className="ml-2 text-[8px] text-cyan-200/45">
-                      {node.status === 'completed' ? 'SYNCED' : 'QUEUED'}
-                    </span>
-                  )}
+                <div className="relative w-64 h-36 rounded-xl border border-cyan-200/30 overflow-hidden backdrop-blur-md bg-slate-900/55 shadow-[0_0_30px_rgba(34,211,238,0.2)] px-4 py-3 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-3xl drop-shadow-[0_0_10px_rgba(34,211,238,0.45)]">{node.isReal ? '◈' : '◇'}</span>
+                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-200/80 shadow-[0_0_12px_rgba(165,243,252,0.7)]" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.15em] truncate mb-2 text-cyan-100/75">{node.label}</div>
+                    <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/25">
+                      <div className="h-full bg-cyan-300/35" style={{ width: node.isReal && node.status === 'completed' ? '100%' : '34%' }} />
+                    </div>
+                    {node.isReal && (
+                      <div className="mt-1 text-[8px] uppercase tracking-[0.18em] text-cyan-200/55">{node.status === 'completed' ? 'Synced' : 'Queued'}</div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -281,9 +267,9 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                initial={{ opacity: 0, scale: 0.65, x: nextActivationOrigin.x, y: nextActivationOrigin.y }}
+                initial={{ opacity: 0, scale: 0.7, x: -420, y: 0 }}
                 animate={{ opacity: 1, scale: [1, 1.04, 1], x: 0, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' } }}
+                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 } }}
                 className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)]"
               >
                 <motion.div
