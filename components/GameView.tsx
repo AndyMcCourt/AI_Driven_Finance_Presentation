@@ -40,7 +40,6 @@ const GameView: React.FC = () => {
     efficiency: MISSION_CONFIG.INITIAL_EFFICIENCY,
   });
   const [activeSegmentId, setActiveSegmentId] = useState<string | null>(null);
-  const [logs, setLogs] = useState<string[]>(['SYSTEM INITIALIZED', 'WAITING FOR GESTURE...']);
   const [isMissionComplete, setIsMissionComplete] = useState(false);
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
 
@@ -83,10 +82,6 @@ const GameView: React.FC = () => {
     [nextAvailableSegment?.id, segments],
   );
 
-  const addLog = (message: string) => {
-    setLogs((prev) => [message, ...prev].slice(0, 10));
-  };
-
   const getDistanceFromCenter = (x: number, y: number) => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
@@ -102,13 +97,8 @@ const GameView: React.FC = () => {
     setIsDraggingOverCenter(false);
     const distance = getDistanceFromCenter(info.point.x, info.point.y);
 
-    if (distance < ACTIVATION_RADIUS) {
-      if (segment.status === 'locked') {
-        addLog(`ACCESS DENIED: ${segment.title} IS LOCKED`);
-      } else {
-        setActiveSegmentId(segment.id);
-        addLog(`DATA STREAM ACTIVATED: ${segment.title}`);
-      }
+    if (distance < ACTIVATION_RADIUS && segment.status !== 'locked') {
+      setActiveSegmentId(segment.id);
     }
   };
 
@@ -125,7 +115,6 @@ const GameView: React.FC = () => {
 
       if (index + 1 < next.length) {
         next[index + 1].status = 'available';
-        addLog(`NEW SECTOR UNLOCKED: ${next[index + 1].title}`);
       } else if (currentId === 'thanks') {
         setIsMissionComplete(true);
       }
@@ -171,8 +160,8 @@ const GameView: React.FC = () => {
             <span className="text-cyan-200 font-black tracking-tight">AI</span>
           </div>
           <div>
-            <h1 className="text-lg font-black tracking-tight uppercase">Finance Gesture Console</h1>
-            <p className="text-[10px] text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL TRANSFORMATION // MANCHESTER</p>
+            <h1 className="text-lg font-black tracking-tight uppercase">Finance Operations Console</h1>
+            <p className="text-[10px] text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL TRANSFORMATION</p>
           </div>
         </div>
 
@@ -184,16 +173,7 @@ const GameView: React.FC = () => {
       </header>
 
       <main className="flex-1 relative flex">
-        <aside className="w-56 border-r border-cyan-400/15 bg-slate-900/20 backdrop-blur-md p-3 flex flex-col gap-3">
-          <h2 className="text-xs font-black text-cyan-300/70 border-b border-cyan-400/20 pb-2 tracking-widest">MISSION LOG</h2>
-          <div className="flex-1 space-y-2 overflow-hidden">
-            {logs.map((log, i) => (
-              <motion.div key={log + i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} className="text-[10px] text-cyan-100/80 bg-cyan-500/5 border border-cyan-400/10 rounded-md p-2">
-                {log}
-              </motion.div>
-            ))}
-          </div>
-        </aside>
+        
 
         <section className="relative flex-1 overflow-hidden">
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-45" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -233,7 +213,7 @@ const GameView: React.FC = () => {
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-8">
                 <div className={`text-[11px] font-black uppercase tracking-[0.4em] mb-3 px-3 py-1 rounded-full border transition-colors ${isDraggingOverCenter ? 'text-cyan-50 bg-cyan-200/20 border-cyan-100/70' : 'text-cyan-100 bg-cyan-500/10 border-cyan-200/35'}`}>
-                  {isDraggingOverCenter ? 'Release to Sync' : 'Gesture Activation Zone'}
+                  {isDraggingOverCenter ? 'Release to Sync' : 'Activation Zone'}
                 </div>
                 <div className={`w-32 h-[3px] mb-6 rounded-full transition-all ${isDraggingOverCenter ? 'bg-cyan-100 shadow-[0_0_20px_rgba(125,211,252,0.95)]' : 'bg-cyan-100/55'}`} />
                 <div className={`text-[10px] max-w-[240px] uppercase leading-relaxed font-bold tracking-[0.22em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
@@ -304,8 +284,8 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                initial={{ opacity: 0, scale: 0.7, x: 0, y: 0 }}
-                animate={{ opacity: 1, scale: [1, 1.04, 1], x: 0, y: 0 }}
+                initial={{ scale: 0.7, x: -nextNodePosition.x, y: -nextNodePosition.y }}
+                animate={{ scale: [1, 1.04, 1], x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 } }}
                 className="relative w-64 h-36 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)] pointer-events-auto"
               >
@@ -385,7 +365,7 @@ const GameView: React.FC = () => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-2xl flex flex-col items-center justify-center p-12 text-center">
           <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
             <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Mission Accomplished</h2>
-            <p className="text-xl text-cyan-50/85 mb-12 leading-relaxed">The AI-Driven Finance roadmap has been successfully synchronized for the Manchester Sector.</p>
+            <p className="text-xl text-cyan-50/85 mb-12 leading-relaxed">The AI-Driven Finance roadmap has been successfully synchronized for this sector.</p>
             <button onClick={() => window.location.reload()} className="px-12 py-6 bg-cyan-300/20 hover:bg-cyan-300/35 text-cyan-100 font-black text-2xl rounded-xl transition-all border border-cyan-200/50 shadow-[0_0_50px_rgba(125,211,252,0.3)]">
               REBOOT SYSTEM
             </button>
