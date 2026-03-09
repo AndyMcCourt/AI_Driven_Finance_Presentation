@@ -1,11 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import GameView from './components/GameView';
 
-const LAUNCH_ANIMATION_MS = 1400;
+const LAUNCH_ANIMATION_MS = 1800;
+
+type Rect = { top: number; left: number; width: number; height: number };
 
 const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const [isLaunching, setIsLaunching] = useState(false);
+  const [targetRect, setTargetRect] = useState<Rect | null>(null);
+  const aiDrivenCellRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!isLaunching) return;
+
+    const readTargetRect = () => {
+      const rect = aiDrivenCellRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      setTargetRect({
+        top: rect.top,
+        left: rect.left,
+        width: rect.width,
+        height: rect.height,
+      });
+    };
+
+    readTargetRect();
+    window.addEventListener('resize', readTargetRect);
+
+    return () => {
+      window.removeEventListener('resize', readTargetRect);
+    };
+  }, [isLaunching]);
 
   const handleLaunch = () => {
     if (isLaunching) return;
@@ -17,8 +44,45 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   };
 
   return (
-    <div className="w-screen h-screen bg-[#01030a] flex items-center justify-center px-6">
-      <div className="w-full max-w-3xl rounded-2xl border border-cyan-400/25 bg-slate-950/85 shadow-[0_0_90px_rgba(8,145,178,0.25)] p-8 md:p-10 text-cyan-50">
+    <div className="relative w-screen h-screen bg-[#01030a] flex items-center justify-center px-6 overflow-hidden">
+      {isLaunching && targetRect && (
+        <motion.div
+          initial={{ top: 0, left: 0, width: '100vw', height: '100vh', opacity: 0.85 }}
+          animate={{
+            top: [0, targetRect.top],
+            left: [0, targetRect.left],
+            width: ['100vw', targetRect.width],
+            height: ['100vh', targetRect.height],
+            opacity: [0.9, 1, 1, 0],
+            scale: [1, 1, 1.08],
+          }}
+          transition={{
+            duration: LAUNCH_ANIMATION_MS / 1000,
+            times: [0, 0.45, 0.72, 1],
+            ease: ['easeInOut', 'easeInOut', 'easeIn'],
+          }}
+          className="pointer-events-none fixed z-40 border-4 border-red-500 shadow-[0_0_28px_rgba(239,68,68,0.95),inset_0_0_24px_rgba(239,68,68,0.65)]"
+        />
+      )}
+
+      <motion.div
+        animate={
+          isLaunching
+            ? {
+                opacity: [1, 1, 0],
+                scale: [1, 1.01, 0.94],
+                filter: ['brightness(1)', 'brightness(1.25) contrast(1.2)', 'brightness(0.3) blur(10px)'],
+                clipPath: [
+                  'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                  'polygon(0 0, 100% 3%, 100% 97%, 0 100%)',
+                  'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)',
+                ],
+              }
+            : undefined
+        }
+        transition={{ duration: LAUNCH_ANIMATION_MS / 1000, times: [0, 0.6, 1], ease: 'easeInOut' }}
+        className="relative z-10 w-full max-w-3xl rounded-2xl border border-cyan-400/25 bg-slate-950/85 shadow-[0_0_90px_rgba(8,145,178,0.25)] p-8 md:p-10 text-cyan-50"
+      >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-cyan-300/80">Welcome</p>
@@ -42,16 +106,9 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
           <div className="grid grid-cols-3 text-center text-[#12343f] text-sm relative">
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Fix the Foundations</div>
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">NextGen Finance Systems</div>
-            <div className="bg-[#c7dde3] py-2.5 font-medium relative">AI Driven Finance</div>
-
-            {isLaunching && (
-              <motion.div
-                initial={{ y: -82, scale: 0.8, opacity: 1 }}
-                animate={{ y: [0, 0], scale: [1, 1, 8], opacity: [1, 1, 0] }}
-                transition={{ duration: LAUNCH_ANIMATION_MS / 1000, times: [0, 0.45, 1], ease: 'easeInOut' }}
-                className="pointer-events-none absolute right-[1.1%] top-[10%] h-[80%] w-[31.8%] border-4 border-red-500 shadow-[0_0_24px_rgba(239,68,68,0.9)]"
-              />
-            )}
+            <div ref={aiDrivenCellRef} className="bg-[#c7dde3] py-2.5 font-medium relative">
+              AI Driven Finance
+            </div>
           </div>
         </div>
 
@@ -62,7 +119,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
         >
           Launch
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };
