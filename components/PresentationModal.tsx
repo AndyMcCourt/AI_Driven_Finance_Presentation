@@ -35,14 +35,14 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex items-center justify-center z-50 p-2 md:p-4 bg-slate-950/80 backdrop-blur-2xl font-mono"
+      className="fixed inset-0 flex items-center justify-center z-50 p-2 md:p-4 bg-slate-950/65 backdrop-blur-2xl font-mono"
     >
       <motion.div 
         initial={{ scale: 0, rotate: -5, opacity: 0 }}
         animate={{ scale: 1, rotate: 0, opacity: 1 }}
         exit={{ scale: 0, rotate: 5, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className={`bg-slate-900 border-[2px] border-cyan-500/50 rounded-xl w-[95vw] h-[90vh] shadow-[0_0_100px_rgba(6,182,212,0.2)] flex flex-col overflow-hidden relative`}
+        className={`bg-slate-900/70 border border-cyan-300/50 rounded-xl w-[95vw] h-[90vh] shadow-[0_0_120px_rgba(34,211,238,0.25)] flex flex-col overflow-hidden relative backdrop-blur-xl`}
       >
         {/* Decorative Corners */}
         <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500" />
@@ -54,7 +54,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           <div className="flex items-center gap-6 mb-4 border-b border-cyan-900/30 pb-6">
             <span className="text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(34,211,238,0.5)]">{segment.icon}</span>
             <div className="flex flex-col flex-1">
-              <h2 className="text-3xl md:text-4xl font-black text-cyan-400 tracking-tighter uppercase leading-none">
+              <h2 className="text-3xl md:text-4xl font-black text-cyan-100 tracking-tighter uppercase leading-none">
                 {segment.title}
               </h2>
               <div className="flex justify-between items-center mt-2">
@@ -86,8 +86,8 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center relative">
-                    <div className="relative z-10 bg-slate-950/40 p-8 md:p-10 rounded-xl border border-cyan-900/30 backdrop-blur-sm overflow-hidden">
-                        <div className="text-cyan-400 text-4xl font-black mb-6 opacity-20 leading-none">DATA_STREAM</div>
+                    <div className="relative z-10 bg-slate-950/35 p-8 md:p-10 rounded-xl border border-cyan-300/20 backdrop-blur-sm overflow-hidden">
+                        <div className="text-cyan-200 text-4xl font-black mb-6 opacity-30 leading-none">DATA_STREAM</div>
                         <div className="text-slate-100 text-xl md:text-2xl leading-[1.4] whitespace-pre-wrap font-medium tracking-tight max-h-[45vh] overflow-y-auto custom-scrollbar-v pr-4">
                             <div className="mb-8 font-black text-cyan-400 uppercase tracking-tight text-2xl border-l-4 border-cyan-500 pl-6">
                               {segment.content}
@@ -125,7 +125,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
         <div className="px-8 md:px-12 pb-8 md:pb-12 shrink-0">
             <button
                 onClick={onClose}
-                className={`w-full ${segment.id === 'thanks' ? 'bg-red-950/40 border-red-500/50 text-red-400 hover:bg-red-900/60' : 'bg-cyan-950/40 border-cyan-500/50 text-cyan-400 hover:bg-cyan-900/60'} font-black py-6 rounded-lg border transition-all active:scale-[0.98] flex items-center justify-center gap-6 group text-xl md:text-2xl uppercase tracking-widest`}
+                className={`w-full ${segment.id === 'thanks' ? 'bg-red-950/40 border-red-500/50 text-red-400 hover:bg-red-900/60' : 'bg-cyan-300/10 border-cyan-300/60 text-cyan-100 hover:bg-cyan-300/20'} font-black py-6 rounded-lg border transition-all active:scale-[0.98] flex items-center justify-center gap-6 group text-xl md:text-2xl uppercase tracking-widest`}
             >
                 <span>{segment.id === 'thanks' ? 'Terminate Session' : 'Acknowledge & Continue'}</span>
                 <motion.span 
