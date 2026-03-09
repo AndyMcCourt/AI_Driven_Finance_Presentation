@@ -308,9 +308,15 @@ const GameView: React.FC = () => {
                 onDragEnd={(e, info) => handleDragEnd(e, info, nextAvailableSegment)}
                 whileHover={{ scale: 1.05, zIndex: 50 }}
                 whileDrag={{ scale: 1.12, zIndex: 100 }}
-                initial={{ scale: 0.7, x: -nextNodePosition.x, y: -nextNodePosition.y }}
-                animate={{ scale: [1, 1.04, 1], x: 0, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut', scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 } }}
+                initial={{ scale: 0.7, opacity: 0.22, x: -nextNodePosition.x, y: -nextNodePosition.y }}
+                animate={{ scale: [1, 1.04, 1], opacity: 1, x: 0, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.2,
+                  ease: 'easeOut',
+                  opacity: { duration: 0.8, delay: 0.2, ease: 'easeOut' },
+                  scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 },
+                }}
                 className="relative w-72 h-40 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)] pointer-events-auto"
               >
                 <motion.div
