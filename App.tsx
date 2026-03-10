@@ -10,6 +10,22 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const [isLaunching, setIsLaunching] = useState(false);
   const [targetRect, setTargetRect] = useState<Rect | null>(null);
   const aiDrivenCellRef = useRef<HTMLDivElement | null>(null);
+  const hasStartedRef = useRef(false);
+  const launchTimeoutRef = useRef<number | null>(null);
+
+  const startApp = () => {
+    if (hasStartedRef.current) return;
+    hasStartedRef.current = true;
+    onStart();
+  };
+
+  useEffect(() => {
+    return () => {
+      if (launchTimeoutRef.current) {
+        window.clearTimeout(launchTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isLaunching) return;
@@ -38,9 +54,10 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
     if (isLaunching) return;
 
     setIsLaunching(true);
-    window.setTimeout(() => {
-      onStart();
-    }, LAUNCH_ANIMATION_MS);
+
+    launchTimeoutRef.current = window.setTimeout(() => {
+      startApp();
+    }, LAUNCH_ANIMATION_MS + 250);
   };
 
   return (
@@ -61,6 +78,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
             times: [0, 0.45, 0.72, 1],
             ease: ['easeInOut', 'easeInOut', 'easeIn'],
           }}
+          onAnimationComplete={startApp}
           className="pointer-events-none fixed z-40 border-4 border-red-500 shadow-[0_0_28px_rgba(239,68,68,0.95),inset_0_0_24px_rgba(239,68,68,0.65)]"
         />
       )}
