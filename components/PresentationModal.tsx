@@ -90,7 +90,8 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
             })}
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-4 custom-scrollbar-v">
+          <div className="flex-1 min-h-0 overflow-y-auto pr-1 custom-scrollbar-v">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
             {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
               const points = visual.points || segment.bullets || [];
@@ -99,7 +100,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 <button
                   key={`section-${visual.id}`}
                   onClick={() => setActiveVisualId(visual.id)}
-                  className={`w-full text-left rounded-xl border overflow-hidden transition-all ${isActive ? 'border-cyan-200/80 bg-slate-900/80 opacity-100 shadow-[0_0_30px_rgba(34,211,238,0.25)]' : 'border-cyan-900/50 bg-slate-950/30 opacity-55 hover:opacity-80'}`}
+                  className={`w-full text-left rounded-xl border overflow-hidden transition-all h-full ${isActive ? 'border-cyan-200/80 bg-slate-900/80 opacity-100 shadow-[0_0_30px_rgba(34,211,238,0.25)]' : 'border-cyan-900/50 bg-slate-950/30 opacity-80 hover:opacity-100'}`}
                 >
                   <div className="relative h-32 md:h-36 border-b border-cyan-800/40">
                     <img src={visual.image} alt={visual.label} className="absolute inset-0 w-full h-full object-cover opacity-75" />
@@ -112,7 +113,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
 
                   <div className="p-6 md:p-7">
                     <div className="text-cyan-200 text-sm uppercase tracking-[0.2em] mb-4">Mission Data</div>
-                    <p className="text-slate-100 text-lg md:text-xl leading-relaxed mb-5">{segment.content}</p>
+                    <p className="text-slate-100 text-lg md:text-xl leading-relaxed mb-5">{visual.description}</p>
 
                     {points.length > 0 && (
                       <ul className="space-y-4">
@@ -141,6 +142,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 </button>
               );
             })}
+            </div>
           </div>
         </div>
 
