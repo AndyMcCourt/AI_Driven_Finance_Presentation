@@ -6,6 +6,8 @@ const RED_SQUARE_ANIMATION_MS = 1800;
 const LANDING_EXIT_DELAY_MS = 120;
 const LANDING_EXIT_MS = 420;
 const TOTAL_LAUNCH_MS = RED_SQUARE_ANIMATION_MS + LANDING_EXIT_DELAY_MS + LANDING_EXIT_MS;
+const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`;
+const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
 
 type Rect = { top: number; left: number; width: number; height: number };
 
@@ -66,8 +68,8 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   return (
     <div className="relative w-screen h-screen bg-[#01030a] flex items-center justify-center px-6 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 z-20 px-6 py-4 flex items-start justify-between pointer-events-none">
-        <img src="/Assets/MnS%20Square%20Snip.JPG" alt="MnS Square Snip" className="h-16 w-auto object-contain" />
-        <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
+        <img src={MNS_LOGO_SRC} alt="MnS Square Snip" className="h-16 w-auto object-contain" />
+        <img src={RNA_LOGO_SRC} alt="RnA Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
       </div>
 
       {isLaunching && targetRect && (
