@@ -83,9 +83,6 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent" />
                     <div className="absolute bottom-2 left-3 text-cyan-100 font-black text-sm tracking-wide uppercase">{visual.label}</div>
                   </div>
-                  <div className="p-3">
-                    <div className="text-cyan-100 font-semibold text-sm uppercase tracking-wide">{visual.label}</div>
-                  </div>
                 </button>
               );
             })}
