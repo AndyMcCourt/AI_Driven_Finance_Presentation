@@ -69,16 +69,16 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
         </div>
 
         <div className="flex-1 min-h-0 px-8 md:px-12 py-4 grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-4">
-          <div className="min-h-0 pr-2 space-y-3">
+          <div className="min-h-0 pr-2 flex flex-col gap-3">
             {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
               return (
                 <button
                   key={visual.id}
                   onClick={() => setActiveVisualId(visual.id)}
-                  className={`w-full text-left rounded-xl border transition-all overflow-hidden ${isActive ? 'border-cyan-200 bg-cyan-500/15 shadow-[0_0_25px_rgba(34,211,238,0.32)]' : 'border-cyan-900/60 bg-slate-950/45 hover:border-cyan-400/60'}`}
+                  className={`w-full flex-1 min-h-[110px] text-left rounded-xl border transition-all overflow-hidden ${isActive ? 'border-cyan-200 bg-cyan-500/15 shadow-[0_0_25px_rgba(34,211,238,0.32)]' : 'border-cyan-900/60 bg-slate-950/45 hover:border-cyan-400/60'}`}
                 >
-                  <div className="h-28 overflow-hidden relative">
+                  <div className="h-full overflow-hidden relative">
                     <img src={visual.image} alt={visual.label} className={`w-full h-full object-cover transition-transform ${isActive ? 'scale-105 opacity-95' : 'opacity-75 hover:scale-105'}`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent" />
                     <div className="absolute bottom-2 left-3 text-cyan-100 font-black text-sm tracking-wide uppercase">{visual.label}</div>
