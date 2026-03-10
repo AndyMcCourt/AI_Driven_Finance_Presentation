@@ -183,19 +183,18 @@ const GameView: React.FC = () => {
 
       <header className="min-h-16 border-b border-cyan-400/20 bg-slate-900/35 backdrop-blur-xl flex flex-wrap items-center justify-between px-4 md:px-6 py-3 gap-3 z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-cyan-400/20 border border-cyan-300/50 flex items-center justify-center shadow-[0_0_18px_rgba(34,211,238,0.4)]">
-            <span className="text-cyan-200 font-black tracking-tight">AI</span>
-          </div>
+          <img src="/Assets/MnS%20Square%20Snip.JPG" alt="MnS Square Snip" className="h-12 w-auto object-contain" />
           <div>
             <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Driven Finance Console</h1>
             <p className="text-xs text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL FINANCE TRANSFORMATION</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-4 lg:gap-6 lg:scale-100 origin-right">
+        <div className="flex items-center gap-4 lg:gap-6 lg:scale-100 origin-right">
           <StatBox label="DATA INTEGRITY" value={missionState.dataIntegrity} color="cyan" />
           <StatBox label="AI READINESS" value={missionState.aiReadiness} color="emerald" />
           <StatBox label="EFFICIENCY" value={missionState.efficiency} color="violet" />
+          <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
         </div>
       </header>
 
