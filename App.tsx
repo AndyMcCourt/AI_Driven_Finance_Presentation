@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import GameView from './components/GameView';
 
-const LAUNCH_ANIMATION_MS = 1800;
+const RED_SQUARE_ANIMATION_MS = 1800;
+const LANDING_EXIT_DELAY_MS = 120;
+const LANDING_EXIT_MS = 420;
+const TOTAL_LAUNCH_MS = RED_SQUARE_ANIMATION_MS + LANDING_EXIT_DELAY_MS + LANDING_EXIT_MS;
 
 type Rect = { top: number; left: number; width: number; height: number };
 
@@ -57,7 +60,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
 
     launchTimeoutRef.current = window.setTimeout(() => {
       startApp();
-    }, LAUNCH_ANIMATION_MS + 250);
+    }, TOTAL_LAUNCH_MS);
   };
 
   return (
@@ -74,11 +77,10 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
             scale: [1, 1, 1.08],
           }}
           transition={{
-            duration: LAUNCH_ANIMATION_MS / 1000,
+            duration: RED_SQUARE_ANIMATION_MS / 1000,
             times: [0, 0.45, 0.72, 1],
             ease: ['easeInOut', 'easeInOut', 'easeIn'],
           }}
-          onAnimationComplete={startApp}
           className="pointer-events-none fixed z-40 border-4 border-red-500 shadow-[0_0_28px_rgba(239,68,68,0.95),inset_0_0_24px_rgba(239,68,68,0.65)]"
         />
       )}
@@ -98,7 +100,12 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
               }
             : undefined
         }
-        transition={{ duration: LAUNCH_ANIMATION_MS / 1000, times: [0, 0.6, 1], ease: 'easeInOut' }}
+        transition={{
+          duration: LANDING_EXIT_MS / 1000,
+          delay: (RED_SQUARE_ANIMATION_MS + LANDING_EXIT_DELAY_MS) / 1000,
+          times: [0, 0.55, 1],
+          ease: 'easeInOut',
+        }}
         className="relative z-10 w-full max-w-3xl rounded-2xl border border-cyan-400/25 bg-slate-950/85 shadow-[0_0_90px_rgba(8,145,178,0.25)] p-8 md:p-10 text-cyan-50"
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
