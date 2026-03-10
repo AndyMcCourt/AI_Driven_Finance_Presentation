@@ -67,7 +67,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
     <div className="relative w-screen h-screen bg-[#01030a] flex items-center justify-center px-6 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 z-20 px-6 py-4 flex items-start justify-between pointer-events-none">
         <img src="/Assets/MnS%20Square%20Snip.JPG" alt="MnS Square Snip" className="h-16 w-auto object-contain" />
-        <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-16 w-auto object-contain" />
+        <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
       </div>
 
       {isLaunching && targetRect && (

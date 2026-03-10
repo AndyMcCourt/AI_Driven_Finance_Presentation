@@ -194,7 +194,7 @@ const GameView: React.FC = () => {
           <StatBox label="DATA INTEGRITY" value={missionState.dataIntegrity} color="cyan" />
           <StatBox label="AI READINESS" value={missionState.aiReadiness} color="emerald" />
           <StatBox label="EFFICIENCY" value={missionState.efficiency} color="violet" />
-          <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-12 w-auto object-contain" />
+          <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
         </div>
       </header>
 
