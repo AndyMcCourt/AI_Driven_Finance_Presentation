@@ -63,33 +63,12 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
             <div className="flex-1">
               <h2 className="text-2xl md:text-4xl font-black text-cyan-100 tracking-tight leading-tight uppercase">{segment.title}</h2>
               {segment.strapline && <p className="text-cyan-300 mt-2 text-sm md:text-lg font-semibold">{segment.strapline}</p>}
-              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-2">Interactive Briefing // click image tiles to reveal content</p>
+              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-2">Interactive Briefing // click a panel to reveal content</p>
             </div>
           </div>
         </div>
 
         <div className="flex-1 min-h-0 px-8 md:px-12 py-3 md:py-4 flex flex-col gap-2 md:gap-3 overflow-hidden">
-          <div className="shrink-0 flex gap-3 overflow-x-auto pb-1 items-stretch">
-            {visualItems.map((visual) => {
-              const isActive = visual.id === activeVisual.id;
-              return (
-                <button
-                  key={visual.id}
-                  onClick={() => setActiveVisualId(visual.id)}
-                  className={`relative flex-1 min-w-[170px] h-[168px] md:h-[188px] text-left rounded-xl border transition-all overflow-hidden ${isActive ? 'border-cyan-200 bg-cyan-500/15 shadow-[0_0_25px_rgba(34,211,238,0.32)]' : 'border-cyan-900/60 bg-slate-950/45 hover:border-cyan-400/60'}`}
-                >
-                  <div className="relative h-[130px] md:h-[148px] overflow-hidden border-b border-cyan-900/50">
-                    <img src={visual.image} alt={visual.label} className={`w-full h-full object-cover transition-transform ${isActive ? 'scale-105 opacity-95' : 'opacity-65 hover:scale-105'}`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent" />
-                  </div>
-                  <div className={`h-[38px] md:h-[40px] flex items-center justify-center px-2 text-cyan-100 font-black text-xs md:text-sm tracking-wide uppercase text-center leading-tight transition-opacity ${isActive ? 'opacity-100' : 'opacity-60'}`}>
-                    {visual.label}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
           <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden pr-1 custom-scrollbar-v">
             <div className="grid h-full grid-cols-1 xl:grid-cols-3 gap-3 md:gap-4 auto-rows-fr">
             {visualItems.map((visual) => {
@@ -108,12 +87,10 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                     <div className="absolute inset-0 bg-slate-950/65" />
                     <div className="absolute bottom-4 left-4 right-4">
                       <h3 className={`text-cyan-100 text-xl md:text-2xl font-black uppercase tracking-wide transition-opacity ${isActive ? 'opacity-100' : 'opacity-60'}`}>{visual.label}</h3>
-                      <p className={`text-cyan-300 text-sm md:text-base mt-1 leading-snug transition-opacity ${isActive ? 'opacity-100' : 'opacity-60'}`}>{visual.description}</p>
                     </div>
                   </div>
 
                   <div className="p-5 md:p-6 flex-1 overflow-hidden">
-                    <div className={`text-cyan-200 text-sm uppercase tracking-[0.2em] mb-3 transition-opacity ${isActive ? 'opacity-100' : 'opacity-55'}`}>Mission Data</div>
                     <p className={`text-slate-100 text-base md:text-lg leading-relaxed mb-4 transition-opacity ${isActive ? 'opacity-100' : 'opacity-55'}`}>{visual.description}</p>
 
                     {visiblePoints.length > 0 && (
