@@ -2,20 +2,22 @@ import { PresentationSegment } from './types';
 
 const missionContextVisuals = [
   {
-    id: 'context-adoption',
-    label: 'AI Adoption Reality',
+    id: 'context-everyday',
+    label: 'AI in Everyday Use',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
-    description: 'AI is already present in daily finance workflows, often quietly in the background.',
+    description:
+      'AI is already present in daily finance workflows — often quietly in the background.',
     points: [
-      'Everyone uses AI (whether you know it or not).',
-      'AI is not coming; it is here.'
+      'AI is already in everyday use.',
+      'Many people use AI-enabled features (sometimes without realising).'
     ]
   },
   {
     id: 'context-complexity',
-    label: 'Enterprise Complexity',
+    label: 'Enterprise Rollout is Complex',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
-    description: 'Scaling AI in large organisations means balancing constraints while still delivering value quickly.',
+    description:
+      'Scaling AI across a large organisation requires balancing constraints while still delivering value.',
     points: [
       'Governance, tooling, licences, cost, data readiness and business priorities all matter.',
       'Balance short-term wins with a long-term strategy while the target keeps moving.'
@@ -25,10 +27,11 @@ const missionContextVisuals = [
     id: 'context-roadmap',
     label: 'Roadmap in Motion',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
-    description: 'The technology-led roadmap is progressing with finance use cases now being prioritised.',
+    description:
+      'A roadmap is essential to overcome rollout complexity, with finance use cases now being prioritised.',
     points: [
-      'Tech-led AI roadmap in motion.',
-      'Finance use cases prioritised.'
+      'A roadmap is being built to overcome enterprise-scale complexity.',
+      'Finance use cases are being prioritised.'
     ]
   }
 ];
@@ -38,17 +41,19 @@ const missionObjectiveVisuals = [
     id: 'objective-automation',
     label: 'Automate and Simplify',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
-    description: 'AI removes repetitive workload and simplifies end-to-end finance processes.',
+    description:
+      'AI removes repetitive workload and simplifies end-to-end finance processes.',
     points: [
       'Automation of routine work.',
-      'Simplification of end to end processes (agentic workflows).'
+      'Simplification of end-to-end processes (agentic workflows).'
     ]
   },
   {
     id: 'objective-judgement',
     label: 'Strengthen Decision Quality',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200',
-    description: 'AI helps finance teams make stronger judgements and influence outcomes earlier.',
+    description:
+      'AI helps finance teams reinforce judgement and influence outcomes earlier.',
     points: [
       'Reinforce finance judgements.',
       'Influence decisions earlier and anticipate performance.'
@@ -59,10 +64,7 @@ const missionObjectiveVisuals = [
     label: 'Risk and Policy Enablement',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200',
     description: 'AI supports risk controls and smoother rollout of new policies.',
-    points: [
-      'Manage risk.',
-      'Implement new policies.'
-    ]
+    points: ['Manage risk.', 'Implement new policies.']
   }
 ];
 
@@ -78,7 +80,8 @@ const missionUpdateVisuals = [
     id: 'update-community',
     label: 'People and Community',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200',
-    description: 'Capability is growing through teams, champions and practical knowledge sharing.',
+    description:
+      'Capability is growing through teams, champions and practical knowledge sharing.',
     points: [
       'AI team established, supported by AI Champions.',
       'Practical AI tools and tips shared in the Penny Bazaar.'
@@ -102,30 +105,35 @@ const fy27Visuals = [
     id: 'fy27-scale',
     label: 'Scale What Works',
     image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1200',
-    description: 'FY27 focuses on scaling proven value across the full finance organisation.',
+    description:
+      'FY27 focuses on scaling proven value and productionising what’s already working.',
     points: [
       'Roll out Xelix in all Business Units.',
-      'Deliver 5 finance AI use cases with the right tools.'
+      'Template and roll out proven pilots (e.g., trade note) where they add value.',
+      'Focus on delivering use cases with the tools at hand (properly exploring the tools).'
     ]
   },
   {
     id: 'fy27-insight',
     label: 'Upgrade Insight for Partners',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
-    description: 'Improve speed and quality of business insight through embedded AI support.',
+    description:
+      'Improve speed and quality of insight through Copilot + Power BI and faster delivery of reporting.',
     points: [
       'Use smart narratives and/or Copilot in Power BI for better partner insight.',
-      'Speed up R&A dev projects by launching Copilot Studio.'
+      'Use Databricks AI and/or Copilot Studio to speed up delivery of insight and reporting.'
     ]
   },
   {
     id: 'fy27-enable-teams',
     label: 'Enable Every Team',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
-    description: 'Equip finance teams with role-based agents while continuing long-term foundations.',
+    description:
+      'Equip teams to leverage AI day-to-day through Copilot 365, role-based agents and training—while building foundations.',
     points: [
-      'Support role-based agents for documentation, presentations and policies.',
-      'Continue building groundwork for the strategic roadmap.'
+      'Roll out Copilot 365 where available and support creation of role-based agents (docs, decks, policies).',
+      'Train AI Champions beyond kick-off sessions to support their teams.',
+      'Continue groundwork: data readiness (e.g., EDW to Beam), S4 delivery, governance and licences.'
     ]
   }
 ];
@@ -137,8 +145,8 @@ const finalMissionVisuals = [
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200',
     description: 'Pause to reflect on progress before ending the presentation.',
     points: [
-      'All core activation nodes have been synchronized.',
-      'Finance is now set to scale AI value across FY27 priorities.'
+      'What’s working is ready to be scaled.',
+      'Teams are being enabled to leverage AI as part of everyday finance delivery.'
     ]
   }
 ];
@@ -147,16 +155,17 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'why',
     title: 'Mission Context: What is AI Driven Finance?',
-    strapline: 'AI is not coming, it is here!',
+    strapline: 'AI is already in everyday use — scaling it well is the challenge.',
     content: 'Understanding the mission landscape before scaling execution.',
     bullets: [
-      'Everyone uses AI (Whether you know it or not).',
-      'AI in large organisations is hard and must account for governance, tooling, licences, cost, data readiness and business priorities.',
-      'Balance short term wins versus long term AI strategy while trying to hit a moving target.',
-      'Tech-led AI roadmap in motion.',
-      'Finance use cases prioritised.'
+      'AI is already in everyday use (often quietly in the background).',
+      'Enterprise-scale rollout is complex: governance, tooling, licences, cost, data readiness and business priorities all matter.',
+      'Balance short-term wins with a long-term strategy while the target keeps moving.',
+      'A roadmap is being built to overcome those complexities.',
+      'Finance use cases are being prioritised.'
     ],
-    summary: 'Enables Finance to be a proactive Business Partner.',
+    // Per discussion: remove/avoid the repeated “proactive business partner” summary here. [1](https://mnscorp-my.sharepoint.com/personal/ian_coldrake_mnscorp_net/Documents/Recordings/ICAM%20Monthly%20Catch%20Up-20260310_133803-Meeting%20Recording.mp4)
+    summary: '',
     visuals: missionContextVisuals,
     icon: '🚀',
     status: 'available',
@@ -165,17 +174,17 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'benefits',
     title: 'Mission Objective: Why do we need AI Driven Finance?',
-    strapline: 'It does not replace us, it enables us to do our jobs better!',
-    content: 'AI amplifies finance capability rather than replacing expertise.',
+    strapline: 'AI amplifies finance capability rather than replacing expertise.',
+    content: 'AI helps finance teams automate, simplify and strengthen decision-making.',
     bullets: [
       'Automation of routine work.',
-      'Simplification of end to end processes (Agentic).',
+      'Simplification of end-to-end processes (agentic workflows).',
       'Reinforce finance judgements.',
+      'Influence decisions earlier and anticipate performance.',
       'Manage risk.',
-      'Implement new policies.',
-      'Influence decisions earlier and anticipate performance.'
+      'Implement new policies.'
     ],
-    summary: 'Enables Finance to be a proactive Business Partner.',
+    summary: 'Enabling finance to be a more proactive business partner to the business.',
     visuals: missionObjectiveVisuals,
     icon: '⚡',
     status: 'locked',
@@ -184,17 +193,18 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'deliverables',
     title: 'Mission Update',
-    strapline: 'It does not replace us, it enables us to do our jobs better!',
-    content: 'Strong momentum is visible across use case discovery, tooling and team enablement.',
+    strapline: "Great start — lots more to do.",
+    content:
+      'Strong momentum is visible across use case discovery, tooling and team enablement.',
     bullets: [
-      '75 Finance use cases identified.',
+      '75 finance use cases identified.',
       'AI team established, supported by AI Champions.',
       'AI weekly trade note being trialled.',
       'Copilot in Power BI triallists.',
       'Xelix (Accounts Payable Automation) being trialled in TSE.',
-      'Practical AI tools and tips being shared in the Penny Bazaar.'
+      'Practical AI tools and tips shared in the Penny Bazaar.'
     ],
-    summary: "Lot's of great work, but lot's more opportunity!",
+    summary: "Lots of great work — lots of opportunity.",
     visuals: missionUpdateVisuals,
     icon: '📡',
     status: 'locked',
@@ -203,15 +213,17 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'thanks',
     title: 'FY27 Mission Objectives',
-    strapline: 'Enabling the wider finance teams to realise AI value.',
+    strapline: 'Enabling the wider finance teams to leverage AI in their jobs.',
     content: 'FY27 converts pilots into scaled and sustainable finance outcomes.',
     bullets: [
-      'Roll-out Xelix in all Business Units.',
-      'Deliver 5 Finance AI use cases (supported by the right tools).',
-      'Smart Narratives and/or Copilot in Power BI to support better insight for business partners.',
-      'Support role based agents to enable finance efficiency (documentation, presentations, policies, etc).',
-      'Speed up R&A dev projects by launching Copilot Studio.',
-      'Continue to develop the groundwork for the strategic roadmap.'
+      'Roll out Xelix in all Business Units.',
+      'Template and roll out proven pilots (e.g., the trade note) where they add value.',
+      'Focus on delivering use cases with the tools at hand (properly exploring the tools).',
+      'Use smart narratives and/or Copilot in Power BI to improve insight for business partners.',
+      'Use Databricks AI and/or Copilot Studio to speed up delivery of insight and reporting.',
+      'Support role-based agents via Copilot 365 (documentation, presentations, policies).',
+      'Train AI Champions beyond kick-off sessions to support their teams.',
+      'Continue groundwork: data readiness (e.g., EDW to Beam), S4 delivery, governance and licences.'
     ],
     summary: 'Enabling teams to scale AI value with confidence.',
     visuals: fy27Visuals,
@@ -224,10 +236,7 @@ export const SEGMENTS: PresentationSegment[] = [
     title: 'Final Activation: End Presentation',
     strapline: 'Mission sequence complete. Ready to close out.',
     content: 'This final node formally ends the presentation flow.',
-    bullets: [
-      'Review complete mission outcomes.',
-      'Confirm readiness to close the presentation.'
-    ],
+    bullets: ['Review complete mission outcomes.', 'Confirm readiness to close the presentation.'],
     summary: 'Presentation complete.',
     visuals: finalMissionVisuals,
     icon: '✅',
@@ -239,5 +248,5 @@ export const SEGMENTS: PresentationSegment[] = [
 export const MISSION_CONFIG = {
   INITIAL_INTEGRITY: 85,
   INITIAL_READINESS: 40,
-  INITIAL_EFFICIENCY: 20,
+  INITIAL_EFFICIENCY: 20
 };
