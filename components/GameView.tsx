@@ -10,6 +10,9 @@ const BASE_NEXT_NODE_ORBIT_RADIUS_Y = 280;
 const BASE_SWARM_RADIUS_X = 760;
 const BASE_SWARM_RADIUS_Y = 460;
 
+const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`;
+const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
+
 const PSEUDO_NODE_LABELS = [
   'Variance Engine',
   'Forecast Model',
@@ -183,7 +186,7 @@ const GameView: React.FC = () => {
 
       <header className="min-h-16 border-b border-cyan-400/20 bg-slate-900/35 backdrop-blur-xl flex flex-wrap items-center justify-between px-4 md:px-6 py-3 gap-3 z-10">
         <div className="flex items-center gap-3">
-          <img src="/Assets/MnS%20Square%20Snip.JPG" alt="MnS Square Snip" className="h-12 w-auto object-contain" />
+          <img src={MNS_LOGO_SRC} alt="MnS Square Snip" className="h-12 w-auto object-contain" />
           <div>
             <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Driven Finance Console</h1>
             <p className="text-xs text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL FINANCE TRANSFORMATION</p>
@@ -194,7 +197,7 @@ const GameView: React.FC = () => {
           <StatBox label="DATA INTEGRITY" value={missionState.dataIntegrity} color="cyan" />
           <StatBox label="AI READINESS" value={missionState.aiReadiness} color="emerald" />
           <StatBox label="EFFICIENCY" value={missionState.efficiency} color="violet" />
-          <img src="/Assets/RnA%20Logo.png" alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
+          <img src={RNA_LOGO_SRC} alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
         </div>
       </header>
 
