@@ -130,6 +130,19 @@ const fy27Visuals = [
   }
 ];
 
+const finalMissionVisuals = [
+  {
+    id: 'final-reflect',
+    label: 'Mission Recap',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200',
+    description: 'Pause to reflect on progress before ending the presentation.',
+    points: [
+      'All core activation nodes have been synchronized.',
+      'Finance is now set to scale AI value across FY27 priorities.'
+    ]
+  }
+];
+
 export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'why',
@@ -203,6 +216,21 @@ export const SEGMENTS: PresentationSegment[] = [
     summary: 'Enabling teams to scale AI value with confidence.',
     visuals: fy27Visuals,
     icon: '🎯',
+    status: 'locked',
+    coordinates: { x: 50, y: 15 }
+  },
+  {
+    id: 'final',
+    title: 'Final Activation: End Presentation',
+    strapline: 'Mission sequence complete. Ready to close out.',
+    content: 'This final node formally ends the presentation flow.',
+    bullets: [
+      'Review complete mission outcomes.',
+      'Confirm readiness to close the presentation.'
+    ],
+    summary: 'Presentation complete.',
+    visuals: finalMissionVisuals,
+    icon: '✅',
     status: 'locked',
     coordinates: { x: 50, y: 15 }
   }

@@ -57,20 +57,20 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
         <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-cyan-500" />
         <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500" />
 
-        <div className="px-8 md:px-12 pt-6 md:pt-8 shrink-0 border-b border-cyan-900/30 pb-5">
+        <div className="px-8 md:px-12 pt-4 md:pt-5 shrink-0 border-b border-cyan-900/30 pb-3">
           <div className="flex items-start gap-4">
             <span className="text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(34,211,238,0.5)]">{segment.icon}</span>
             <div className="flex-1">
               <h2 className="text-2xl md:text-4xl font-black text-cyan-100 tracking-tight leading-tight uppercase">{segment.title}</h2>
               {segment.strapline && <p className="text-cyan-300 mt-2 text-sm md:text-lg font-semibold">{segment.strapline}</p>}
-              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-3">Interactive Briefing // click image tiles to reveal content</p>
+              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-2">Interactive Briefing // click image tiles to reveal content</p>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 min-h-0 px-8 md:px-12 py-6 grid grid-cols-1 xl:grid-cols-[380px_1fr] gap-6">
-          <div className="min-h-0 overflow-y-auto pr-2 custom-scrollbar-v space-y-4">
-            {visualItems.map((visual, index) => {
+        <div className="flex-1 min-h-0 px-8 md:px-12 py-4 grid grid-cols-1 xl:grid-cols-[380px_1fr] gap-4">
+          <div className="min-h-0 pr-2 space-y-3">
+            {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
               return (
                 <button
@@ -81,7 +81,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                   <div className="h-28 overflow-hidden relative">
                     <img src={visual.image} alt={visual.label} className={`w-full h-full object-cover transition-transform ${isActive ? 'scale-105 opacity-95' : 'opacity-75 hover:scale-105'}`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent" />
-                    <div className="absolute bottom-2 left-3 text-cyan-100 font-black text-sm tracking-wide uppercase">Tile {index + 1}</div>
+                    <div className="absolute bottom-2 left-3 text-cyan-100 font-black text-sm tracking-wide uppercase">{visual.label}</div>
                   </div>
                   <div className="p-3">
                     <div className="text-cyan-100 font-semibold text-sm uppercase tracking-wide">{visual.label}</div>
@@ -92,16 +92,16 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           </div>
 
           <div className="min-h-0 flex flex-col rounded-xl border border-cyan-300/20 bg-slate-950/40 overflow-hidden">
-            <div className="relative h-52 md:h-64 border-b border-cyan-800/40">
+            <div className="relative h-40 md:h-44 border-b border-cyan-800/40">
               <img src={activeVisual.image} alt={activeVisual.label} className="absolute inset-0 w-full h-full object-cover opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" />
+              <div className="absolute inset-0 bg-slate-950/60" />
               <div className="absolute bottom-4 left-4 right-4">
                 <h3 className="text-cyan-100 text-xl md:text-2xl font-black uppercase tracking-wide">{activeVisual.label}</h3>
                 <p className="text-cyan-300 text-sm md:text-base mt-1">{activeVisual.description}</p>
               </div>
             </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar-v p-6 md:p-8">
+            <div className="flex-1 min-h-0 p-6 md:p-7">
               <div className="text-cyan-200 text-sm uppercase tracking-[0.2em] mb-4">Mission Data</div>
               <p className="text-slate-100 text-lg md:text-xl leading-relaxed mb-5">{segment.content}</p>
 
@@ -132,7 +132,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           </div>
         </div>
 
-        <div className="px-8 md:px-12 pb-8 md:pb-10 shrink-0">
+        <div className="px-8 md:px-12 pb-5 md:pb-6 shrink-0">
           <button
             onClick={onClose}
             className="w-full bg-cyan-300/10 border-cyan-300/60 text-cyan-100 hover:bg-cyan-300/20 font-black py-5 rounded-lg border transition-all active:scale-[0.98] flex items-center justify-center gap-4 text-lg md:text-xl uppercase tracking-widest"
