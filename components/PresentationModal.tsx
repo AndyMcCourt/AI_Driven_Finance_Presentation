@@ -69,19 +69,21 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
         </div>
 
         <div className="flex-1 min-h-0 px-8 md:px-12 py-4 flex flex-col gap-4 overflow-hidden">
-          <div className="shrink-0 flex gap-3 overflow-x-auto pb-1">
+          <div className="shrink-0 flex gap-3 overflow-x-auto pb-1 items-stretch">
             {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
               return (
                 <button
                   key={visual.id}
                   onClick={() => setActiveVisualId(visual.id)}
-                  className={`relative min-w-[170px] md:min-w-[220px] h-[88px] text-left rounded-xl border transition-all overflow-hidden ${isActive ? 'border-cyan-200 bg-cyan-500/15 shadow-[0_0_25px_rgba(34,211,238,0.32)]' : 'border-cyan-900/60 bg-slate-950/45 hover:border-cyan-400/60'}`}
+                  className={`relative flex-1 min-w-[170px] h-[118px] text-left rounded-xl border transition-all overflow-hidden ${isActive ? 'border-cyan-200 bg-cyan-500/15 shadow-[0_0_25px_rgba(34,211,238,0.32)]' : 'border-cyan-900/60 bg-slate-950/45 hover:border-cyan-400/60'}`}
                 >
-                  <div className="h-full overflow-hidden">
+                  <div className="relative h-[88px] overflow-hidden border-b border-cyan-900/50">
                     <img src={visual.image} alt={visual.label} className={`w-full h-full object-cover transition-transform ${isActive ? 'scale-105 opacity-95' : 'opacity-65 hover:scale-105'}`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent" />
-                    <div className="absolute bottom-2 left-3 text-cyan-100 font-black text-sm tracking-wide uppercase">{visual.label}</div>
+                  </div>
+                  <div className="h-[30px] flex items-center justify-center px-2 text-cyan-100 font-black text-xs md:text-sm tracking-wide uppercase text-center leading-tight">
+                    {visual.label}
                   </div>
                 </button>
               );
