@@ -214,7 +214,7 @@ const GameView: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex-1 relative flex flex-col xl:flex-row">
+      <main className="flex-1 relative flex flex-col lg:flex-row">
         
 
         <section className="relative flex-1 overflow-hidden">
@@ -365,7 +365,7 @@ const GameView: React.FC = () => {
           )}
         </section>
 
-        <aside className="w-full xl:w-80 border-t xl:border-t-0 xl:border-l border-cyan-400/15 bg-slate-900/20 backdrop-blur-md p-5 flex flex-col gap-5">
+        <aside className="w-full lg:w-80 border-t lg:border-t-0 lg:border-l border-cyan-400/15 bg-slate-900/20 backdrop-blur-md p-5 flex flex-col gap-5">
           <div className="p-3 border border-cyan-400/20 rounded-lg bg-slate-950/40">
             <h3 className="text-sm font-black mb-4 flex items-center gap-2 text-cyan-200/90">
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />

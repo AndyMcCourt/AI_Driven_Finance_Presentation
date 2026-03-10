@@ -68,7 +68,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           </div>
         </div>
 
-        <div className="flex-1 min-h-0 px-8 md:px-12 py-4 grid grid-cols-1 xl:grid-cols-[380px_1fr] gap-4">
+        <div className="flex-1 min-h-0 px-8 md:px-12 py-4 grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-4">
           <div className="min-h-0 pr-2 space-y-3">
             {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
