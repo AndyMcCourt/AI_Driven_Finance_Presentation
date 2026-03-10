@@ -34,6 +34,8 @@ const PSEUDO_NODE_LABELS = [
   'Insight Synthesizer'
 ];
 
+const getActivationCardTitle = (title: string) => title.split(':')[0].trim();
+
 const GameView: React.FC = () => {
   const [segments, setSegments] = useState<PresentationSegment[]>(SEGMENTS);
   const [missionState, setMissionState] = useState<MissionState>({
@@ -140,23 +142,34 @@ const GameView: React.FC = () => {
 
     setSegments((prev) => {
       const index = prev.findIndex((s) => s.id === currentId);
+      if (index < 0) return prev;
+
       const next = [...prev];
+      const isProgressingStep = next[index].status === 'available';
+
+      if (!isProgressingStep) {
+        return next;
+      }
+
       next[index].status = 'completed';
 
       if (index + 1 < next.length) {
         next[index + 1].status = 'available';
-      } else if (currentId === 'thanks') {
+      } else if (currentId === 'final') {
         setIsMissionComplete(true);
       }
 
       return next;
     });
 
-    setMissionState((prev) => ({
-      dataIntegrity: Math.min(100, prev.dataIntegrity + 5),
-      aiReadiness: Math.min(100, prev.aiReadiness + 20),
-      efficiency: Math.min(100, prev.efficiency + 15),
-    }));
+    const currentSegmentStatus = segments.find((s) => s.id === currentId)?.status;
+    if (currentSegmentStatus === 'available') {
+      setMissionState((prev) => ({
+        dataIntegrity: Math.min(100, prev.dataIntegrity + 5),
+        aiReadiness: Math.min(100, prev.aiReadiness + 20),
+        efficiency: Math.min(100, prev.efficiency + 15),
+      }));
+    }
   };
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
@@ -285,7 +298,7 @@ const GameView: React.FC = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-cyan-200/80 shadow-[0_0_12px_rgba(165,243,252,0.7)]" />
                   </div>
                   <div>
-                    <div className="text-lg font-black uppercase tracking-[0.08em] truncate mb-2 text-cyan-100/75">{node.label}</div>
+                    <div className="text-lg font-black uppercase tracking-[0.08em] mb-2 text-cyan-100/75 whitespace-normal leading-snug break-words">{getActivationCardTitle(node.label)}</div>
                     <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/25">
                       <div className="h-full bg-cyan-300/35" style={{ width: node.isReal && node.status === 'completed' ? '100%' : '34%' }} />
                     </div>
@@ -325,7 +338,7 @@ const GameView: React.FC = () => {
                   opacity: { duration: 0.8, delay: 0.2, ease: 'easeOut' },
                   scale: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.2 },
                 }}
-                className="relative w-72 h-40 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)] pointer-events-auto"
+                className="relative w-72 min-h-44 rounded-xl border border-cyan-200/70 cursor-grab active:cursor-grabbing overflow-hidden group backdrop-blur-md bg-slate-900/80 shadow-[0_0_40px_rgba(34,211,238,0.38)] pointer-events-auto"
               >
                 <motion.div
                   className="absolute inset-0 rounded-xl border border-cyan-200/40"
@@ -338,7 +351,7 @@ const GameView: React.FC = () => {
                     <div className="w-3 h-3 rounded-full bg-cyan-200 animate-pulse shadow-[0_0_16px_rgba(165,243,252,0.9)]" />
                   </div>
                   <div>
-                    <div className="text-lg font-black uppercase tracking-[0.08em] truncate mb-2 text-cyan-100">{nextAvailableSegment.title}</div>
+                    <div className="text-lg font-black uppercase tracking-[0.08em] mb-2 text-cyan-100 whitespace-normal leading-snug break-words">{getActivationCardTitle(nextAvailableSegment.title)}</div>
                     <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden border border-cyan-300/35">
                       <motion.div initial={{ width: 0 }} animate={{ width: '34%' }} className="h-full bg-cyan-300/60" />
                     </div>
@@ -366,7 +379,10 @@ const GameView: React.FC = () => {
             {segments.map((s) => (
               <div key={s.id} className="flex items-center justify-between text-xs border-b border-cyan-400/10 pb-2">
                 <span className="uppercase text-cyan-100/85">{s.title}</span>
-                <span className={`font-bold ${s.status === 'completed' ? 'text-emerald-300' : s.status === 'available' ? 'text-cyan-300' : 'text-slate-500'}`}>
+                <span
+                  onClick={() => s.status !== 'locked' && setActiveSegmentId(s.id)}
+                  className={`font-bold ${s.status === 'completed' ? 'text-emerald-300 cursor-pointer hover:text-emerald-200' : s.status === 'available' ? 'text-cyan-300 cursor-pointer hover:text-cyan-100' : 'text-slate-500 cursor-not-allowed'}`}
+                >
                   {s.status.toUpperCase()}
                 </span>
               </div>
