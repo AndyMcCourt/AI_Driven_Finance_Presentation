@@ -49,6 +49,7 @@ const GameView: React.FC = () => {
   const [isBlackout, setIsBlackout] = useState(false);
   const [isBlackoutFlickering, setIsBlackoutFlickering] = useState(false);
   const [showRebootButton, setShowRebootButton] = useState(false);
+  const [showGlitchOverlay, setShowGlitchOverlay] = useState(false);
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
   const [viewportSize, setViewportSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
@@ -152,6 +153,7 @@ const GameView: React.FC = () => {
         setIsBlackout(false);
         setIsBlackoutFlickering(false);
         setShowRebootButton(false);
+        setShowGlitchOverlay(false);
         setIsMissionComplete(true);
       }
 
@@ -190,35 +192,37 @@ const GameView: React.FC = () => {
     completeSegment(currentId);
   };
 
-useEffect(() => {
-  if (!isMissionComplete || showRebootButton) return;
+  useEffect(() => {
+    if (!isMissionComplete || showRebootButton) return;
 
-  if (selfDestructSeconds > 0) {
-    const countdownTimer = window.setTimeout(() => {
-      setSelfDestructSeconds((prev) => Math.max(0, prev - 1));
-    }, 1000);
+    if (selfDestructSeconds > 0) {
+      const countdownTimer = window.setTimeout(() => {
+        setSelfDestructSeconds((prev) => Math.max(0, prev - 1));
+      }, 1000);
 
-    return () => window.clearTimeout(countdownTimer);
-  }
+      return () => window.clearTimeout(countdownTimer);
+    }
 
-  if (isBlackoutFlickering || isBlackout) return;
+    if (isBlackoutFlickering || isBlackout || showGlitchOverlay) return;
 
-  setIsBlackoutFlickering(true);
+    setShowGlitchOverlay(true);
+    setIsBlackoutFlickering(true);
 
-  const flickerTimer = window.setTimeout(() => {
-    setIsBlackoutFlickering(false);
-    setIsBlackout(true);
-  }, 1500);
+    const flickerTimer = window.setTimeout(() => {
+      setIsBlackoutFlickering(false);
+      setShowGlitchOverlay(false);
+      setIsBlackout(true);
+    }, 1500);
 
-  const rebootTimer = window.setTimeout(() => {
-    setShowRebootButton(true);
-  }, 3500);
+    const rebootTimer = window.setTimeout(() => {
+      setShowRebootButton(true);
+    }, 5500);
 
-  return () => {
-    window.clearTimeout(flickerTimer);
-    window.clearTimeout(rebootTimer);
-  };
-}, [isBlackout, isBlackoutFlickering, isMissionComplete, selfDestructSeconds, showRebootButton]);
+    return () => {
+      window.clearTimeout(flickerTimer);
+      window.clearTimeout(rebootTimer);
+    };
+  }, [isBlackout, isBlackoutFlickering, isMissionComplete, selfDestructSeconds, showGlitchOverlay, showRebootButton]);
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
 
@@ -467,43 +471,70 @@ useEffect(() => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={
-  isBlackoutFlickering
-    ? {
-        opacity: [1, 1, 0.95, 1, 0.9, 1, 0.82, 1, 0.6, 0],
-        filter: [
-          'brightness(1)',
-          'brightness(1.4)',
-          'brightness(0.7)',
-          'brightness(1.2)',
-          'brightness(0.5)',
-          'brightness(1.1)',
-          'brightness(0.3)',
-          'brightness(0.9)',
-          'brightness(0.15)',
-          'brightness(0)',
-        ],
-        y: [0, -1, 1, -2, 2, -1, 0, 0, 0, 0],
-        scaleY: [1, 1, 0.99, 1.01, 0.98, 1, 0.94, 0.8, 0.3, 0],
-      }
-    : { opacity: 1, filter: 'brightness(1)', y: 0, scaleY: 1 }
-}
-transition={
-  isBlackoutFlickering
-    ? {
-        duration: 1.5,
-        ease: 'easeInOut',
-      }
-    : { duration: 0.3 }
-}
+            isBlackoutFlickering
+              ? {
+                  opacity: [1, 0.15, 1, 0.35, 1, 0.1, 1, 0.5, 1, 0.2, 1],
+                  filter: [
+                    'brightness(1.4) contrast(1.4)',
+                    'brightness(0.2) contrast(2.2)',
+                    'brightness(1.7) contrast(1.8)',
+                    'brightness(0.15) contrast(2.6)',
+                    'brightness(1.8) contrast(2)',
+                    'brightness(0.08) contrast(3)',
+                    'brightness(1.5) contrast(2)',
+                    'brightness(0.25) contrast(2.8)',
+                    'brightness(1.9) contrast(2.1)',
+                    'brightness(0.05) contrast(3.2)',
+                    'brightness(1.3) contrast(2)',
+                  ],
+                  x: [0, -8, 7, -12, 14, -6, 9, -11, 6, -4, 0],
+                  y: [0, 4, -3, 8, -7, 5, -6, 9, -4, 2, 0],
+                  scaleX: [1, 1.02, 0.97, 1.03, 0.96, 1.01, 0.95, 1.04, 0.98, 1.02, 1],
+                }
+              : { opacity: 1, filter: 'brightness(1)', x: 0, y: 0, scaleX: 1 }
+          }
+          transition={
+            isBlackoutFlickering
+              ? {
+                  duration: 1.5,
+                  times: [0, 0.08, 0.16, 0.26, 0.36, 0.48, 0.58, 0.7, 0.8, 0.9, 1],
+                  ease: 'linear',
+                }
+              : { duration: 0.2 }
+          }
           className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-12 text-center transition-colors duration-200 ${
             isBlackout ? 'bg-black' : 'bg-slate-950/80 backdrop-blur-2xl'
           }`}
         >
-          {!isBlackout && (
+          {!isBlackout && !showGlitchOverlay && (
             <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
               <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Mission Complete</h2>
               <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">This Message will self destruct in {selfDestructSeconds} seconds</p>
             </motion.div>
+          )}
+
+          {isBlackoutFlickering && (
+            <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen">
+              {Array.from({ length: 14 }).map((_, index) => (
+                <motion.div
+                  key={`glitch-band-${index}`}
+                  className="absolute left-0 w-full"
+                  style={{
+                    top: `${(index / 14) * 100}%`,
+                    height: `${4 + (index % 4) * 2}%`,
+                    background:
+                      index % 2 === 0
+                        ? 'linear-gradient(90deg, rgba(56,189,248,0), rgba(56,189,248,0.75), rgba(244,114,182,0.65), rgba(56,189,248,0))'
+                        : 'linear-gradient(90deg, rgba(56,189,248,0), rgba(125,211,252,0.55), rgba(255,255,255,0.75), rgba(56,189,248,0))',
+                  }}
+                  animate={{
+                    opacity: [0, 1, 0.1, 0.9, 0],
+                    x: [0, (index % 2 === 0 ? 1 : -1) * (24 + index * 1.6), 0],
+                  }}
+                  transition={{ duration: 0.22 + (index % 3) * 0.06, repeat: Infinity, ease: 'linear' }}
+                />
+              ))}
+            </div>
           )}
 
           {showRebootButton && (
