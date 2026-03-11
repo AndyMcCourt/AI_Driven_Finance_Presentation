@@ -99,7 +99,7 @@ const missionUpdateVisuals = [
     id: 'update-trials',
     label: 'Live Trials',
     image: `${import.meta.env.BASE_URL}Assets/xelix_Logo.jpg`,
-    description: 'We are already starting to implement AI capabilities',
+    description: 'We are already starting to implement AI capabilities...',
     points: [
       'AI weekly trade note',
       'Copilot in Power BI',
