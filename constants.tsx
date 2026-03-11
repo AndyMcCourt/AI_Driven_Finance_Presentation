@@ -243,7 +243,7 @@ export const SEGMENTS: PresentationSegment[] = [
   },
   {
     id: 'final',
-    title: 'Final Activation: End Presentation',
+    title: 'Mission Complete: End Presentation',
     strapline: 'Mission sequence complete. Ready to close out.',
     content: 'This final node formally ends the presentation flow.',
     bullets: ['Review complete mission outcomes.', 'Confirm readiness to close the presentation.'],
