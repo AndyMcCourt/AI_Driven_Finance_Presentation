@@ -47,6 +47,7 @@ const GameView: React.FC = () => {
   const [isMissionComplete, setIsMissionComplete] = useState(false);
   const [selfDestructSeconds, setSelfDestructSeconds] = useState(3);
   const [isBlackout, setIsBlackout] = useState(false);
+  const [isBlackoutFlickering, setIsBlackoutFlickering] = useState(false);
   const [showRebootButton, setShowRebootButton] = useState(false);
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
   const [viewportSize, setViewportSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -149,6 +150,7 @@ const GameView: React.FC = () => {
       if (segmentId === 'final') {
         setSelfDestructSeconds(3);
         setIsBlackout(false);
+        setIsBlackoutFlickering(false);
         setShowRebootButton(false);
         setIsMissionComplete(true);
       }
@@ -189,7 +191,7 @@ const GameView: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!isMissionComplete || isBlackout || showRebootButton) return;
+    if (!isMissionComplete || showRebootButton) return;
 
     if (selfDestructSeconds > 0) {
       const countdownTimer = window.setTimeout(() => {
@@ -199,12 +201,22 @@ const GameView: React.FC = () => {
       return () => window.clearTimeout(countdownTimer);
     }
 
+    if (isBlackout) return;
+
     setIsBlackout(true);
+    setIsBlackoutFlickering(true);
+    const flickerTimer = window.setTimeout(() => {
+      setIsBlackoutFlickering(false);
+    }, 2200);
+
     const rebootTimer = window.setTimeout(() => {
       setShowRebootButton(true);
     }, 10000);
 
-    return () => window.clearTimeout(rebootTimer);
+    return () => {
+      window.clearTimeout(flickerTimer);
+      window.clearTimeout(rebootTimer);
+    };
   }, [isBlackout, isMissionComplete, selfDestructSeconds, showRebootButton]);
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
@@ -453,8 +465,8 @@ const GameView: React.FC = () => {
       {isMissionComplete && (
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isBlackout ? { opacity: [1, 0.2, 1, 0.1, 1] } : { opacity: 1 }}
-          transition={isBlackout ? { duration: 0.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
+          animate={isBlackoutFlickering ? { opacity: [1, 0.2, 1, 0.1, 1, 0.15, 1] } : { opacity: 1 }}
+          transition={isBlackoutFlickering ? { duration: 2.2, ease: 'easeInOut' } : { duration: 0.3 }}
           className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-12 text-center transition-colors duration-200 ${
             isBlackout ? 'bg-black' : 'bg-slate-950/80 backdrop-blur-2xl'
           }`}
