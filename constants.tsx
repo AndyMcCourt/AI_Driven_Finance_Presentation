@@ -3,13 +3,14 @@ import { PresentationSegment } from './types';
 const missionContextVisuals = [
   {
     id: 'context-everyday',
-    label: 'AI in Everyday Use',
+    label: 'AI is Everywhere',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
     description:
-      'AI is already present in daily finance workflows — often quietly in the background.',
+    'AI is part of daily life — and Copilot Chat is already in our toolset'
     points: [
-      'AI is already in everyday use.',
-      'Many people use AI-enabled features (sometimes without realising).'
+      'AI is already in everyday use — general‑purpose AI is now genuinely powerful.',
+      'Copilot Chat is available to everyone and can deliver quick productivity wins.',
+      'Many people use AI‑enabled features without realising.'
     ]
   },
   {
@@ -17,9 +18,11 @@ const missionContextVisuals = [
     label: 'Enterprise Rollout is Complex',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
     description:
-      'Scaling AI across a large organisation requires balancing constraints while still delivering value.',
+      'Scaling AI across a large organisation requires careful planning of many factors.',
     points: [
-      'Governance, tooling, licences, cost, data readiness and business priorities all matter.',
+      'Governance Guardrails access controls, and clear standards before wider deployment',
+  	  'Needs effective licensing and cost tracking',
+  	  'Data readiness required to produce trustworthy outputs - Garbage In Garbage Out',
       'Balance short-term wins with a long-term strategy while the target keeps moving.'
     ]
   },
@@ -28,10 +31,11 @@ const missionContextVisuals = [
     label: 'Roadmap in Motion',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
     description:
-      'A roadmap is essential to overcome rollout complexity, with finance use cases now being prioritised.',
+      'A tech-led roadmap is underway to standardise AI Implementations',
     points: [
-      'A roadmap is being built to overcome enterprise-scale complexity.',
-      'Finance use cases are being prioritised.'
+      'BCG Prioritisation - Focus on high‑value, practical wins',
+      'Finance use cases are being prioritised.',
+	  'Some capabilities moving from ad‑hoc experimentation to controlled rollout',
     ]
   }
 ];
