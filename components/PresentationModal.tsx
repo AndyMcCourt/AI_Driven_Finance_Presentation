@@ -74,7 +74,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
             {visualItems.map((visual) => {
               const isActive = visual.id === activeVisual.id;
               const points = visual.points || segment.bullets || [];
-              const visiblePoints = isActive ? points : points.slice(0, 2);
+              const visiblePoints = points;
 
               return (
                 <button
