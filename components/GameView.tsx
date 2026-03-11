@@ -45,6 +45,9 @@ const GameView: React.FC = () => {
   });
   const [activeSegmentId, setActiveSegmentId] = useState<string | null>(null);
   const [isMissionComplete, setIsMissionComplete] = useState(false);
+  const [selfDestructSeconds, setSelfDestructSeconds] = useState(3);
+  const [isBlackout, setIsBlackout] = useState(false);
+  const [showRebootButton, setShowRebootButton] = useState(false);
   const [isDraggingOverCenter, setIsDraggingOverCenter] = useState(false);
   const [viewportSize, setViewportSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
@@ -144,6 +147,9 @@ const GameView: React.FC = () => {
       }
 
       if (segmentId === 'final') {
+        setSelfDestructSeconds(3);
+        setIsBlackout(false);
+        setShowRebootButton(false);
         setIsMissionComplete(true);
       }
 
@@ -181,6 +187,25 @@ const GameView: React.FC = () => {
 
     completeSegment(currentId);
   };
+
+  useEffect(() => {
+    if (!isMissionComplete || isBlackout || showRebootButton) return;
+
+    if (selfDestructSeconds > 0) {
+      const countdownTimer = window.setTimeout(() => {
+        setSelfDestructSeconds((prev) => Math.max(0, prev - 1));
+      }, 1000);
+
+      return () => window.clearTimeout(countdownTimer);
+    }
+
+    setIsBlackout(true);
+    const rebootTimer = window.setTimeout(() => {
+      setShowRebootButton(true);
+    }, 10000);
+
+    return () => window.clearTimeout(rebootTimer);
+  }, [isBlackout, isMissionComplete, selfDestructSeconds, showRebootButton]);
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
 
@@ -426,14 +451,31 @@ const GameView: React.FC = () => {
       </AnimatePresence>
 
       {isMissionComplete && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-2xl flex flex-col items-center justify-center p-12 text-center">
-          <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
-            <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Mission Accomplished</h2>
-            <p className="text-xl text-cyan-50/85 mb-12 leading-relaxed">The AI-Driven Finance roadmap has been successfully synchronized for this sector.</p>
-            <button onClick={() => window.location.reload()} className="px-12 py-6 bg-cyan-300/20 hover:bg-cyan-300/35 text-cyan-100 font-black text-2xl rounded-xl transition-all border border-cyan-200/50 shadow-[0_0_50px_rgba(125,211,252,0.3)]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isBlackout ? { opacity: [1, 0.2, 1, 0.1, 1] } : { opacity: 1 }}
+          transition={isBlackout ? { duration: 0.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-12 text-center transition-colors duration-200 ${
+            isBlackout ? 'bg-black' : 'bg-slate-950/80 backdrop-blur-2xl'
+          }`}
+        >
+          {!isBlackout && (
+            <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
+              <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Mission Complete</h2>
+              <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">This Message will self destruct in {selfDestructSeconds} seconds</p>
+            </motion.div>
+          )}
+
+          {showRebootButton && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              onClick={() => window.location.reload()}
+              className="px-12 py-6 bg-cyan-300/20 hover:bg-cyan-300/35 text-cyan-100 font-black text-2xl rounded-xl transition-all border border-cyan-200/50 shadow-[0_0_50px_rgba(125,211,252,0.3)]"
+            >
               REBOOT SYSTEM
-            </button>
-          </motion.div>
+            </motion.button>
+          )}
         </motion.div>
       )}
     </div>
