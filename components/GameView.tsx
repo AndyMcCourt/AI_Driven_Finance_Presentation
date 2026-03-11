@@ -125,23 +125,9 @@ const GameView: React.FC = () => {
     setIsDraggingOverCenter(distance < activationRadius);
   };
 
-  const handleDragEnd = (_event: unknown, info: any, segment: PresentationSegment) => {
-    setIsDraggingOverCenter(false);
-    const distance = getDistanceFromCenter(info.point.x, info.point.y);
-
-    if (distance < activationRadius && segment.status !== 'locked') {
-      setActiveSegmentId(segment.id);
-    }
-  };
-
-  const closeSegment = () => {
-    const currentId = activeSegmentId;
-    setActiveSegmentId(null);
-
-    if (!currentId) return;
-
+  const completeSegment = (segmentId: string) => {
     setSegments((prev) => {
-      const index = prev.findIndex((s) => s.id === currentId);
+      const index = prev.findIndex((s) => s.id === segmentId);
       if (index < 0) return prev;
 
       const next = [...prev];
@@ -155,14 +141,16 @@ const GameView: React.FC = () => {
 
       if (index + 1 < next.length) {
         next[index + 1].status = 'available';
-      } else if (currentId === 'final') {
+      }
+
+      if (segmentId === 'final') {
         setIsMissionComplete(true);
       }
 
       return next;
     });
 
-    const currentSegmentStatus = segments.find((s) => s.id === currentId)?.status;
+    const currentSegmentStatus = segments.find((s) => s.id === segmentId)?.status;
     if (currentSegmentStatus === 'available') {
       setMissionState((prev) => ({
         dataIntegrity: Math.min(100, prev.dataIntegrity + 5),
@@ -170,6 +158,28 @@ const GameView: React.FC = () => {
         efficiency: Math.min(100, prev.efficiency + 15),
       }));
     }
+  };
+
+  const handleDragEnd = (_event: unknown, info: any, segment: PresentationSegment) => {
+    setIsDraggingOverCenter(false);
+    const distance = getDistanceFromCenter(info.point.x, info.point.y);
+
+    if (distance < activationRadius && segment.status !== 'locked') {
+      if (segment.id === 'final') {
+        completeSegment(segment.id);
+      } else {
+        setActiveSegmentId(segment.id);
+      }
+    }
+  };
+
+  const closeSegment = () => {
+    const currentId = activeSegmentId;
+    setActiveSegmentId(null);
+
+    if (!currentId) return;
+
+    completeSegment(currentId);
   };
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
@@ -380,7 +390,7 @@ const GameView: React.FC = () => {
               <div key={s.id} className="flex items-center justify-between text-xs border-b border-cyan-400/10 pb-2">
                 <span className="uppercase text-cyan-100/85">{s.title}</span>
                 <span
-                  onClick={() => s.status !== 'locked' && setActiveSegmentId(s.id)}
+                  onClick={() => s.status !== 'locked' && (s.id === 'final' ? completeSegment(s.id) : setActiveSegmentId(s.id))}
                   className={`font-bold ${s.status === 'completed' ? 'text-emerald-300 cursor-pointer hover:text-emerald-200' : s.status === 'available' ? 'text-cyan-300 cursor-pointer hover:text-cyan-100' : 'text-slate-500 cursor-not-allowed'}`}
                 >
                   {s.status.toUpperCase()}
