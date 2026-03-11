@@ -129,7 +129,7 @@ const fy27Visuals = [
       'Improve speed and quality of insight through Copilot + Power BI and faster delivery of reporting.',
     points: [
       'Everyday Reporting (AI Commentary and Insight)',
-      'Enhance Analytics Capability',
+      'Action-Focused Analytics',
 	  'Improve Speed of Outputs'
     ]
   },
