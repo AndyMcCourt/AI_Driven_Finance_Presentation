@@ -115,13 +115,10 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
         }}
         className="relative z-10 w-full max-w-3xl rounded-2xl border border-cyan-400/25 bg-slate-950/85 shadow-[0_0_90px_rgba(8,145,178,0.25)] p-8 md:p-10 text-cyan-50 mt-20"
       >
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-cyan-300/80">Welcome</p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight">AI Driven Finance</h1>
-          </div>
-          <div className="h-16 w-28 rounded-lg border border-cyan-200/40 bg-white text-[#112f38] flex items-center justify-center text-3xl font-black tracking-tight shadow-md">
-            M&amp;S
           </div>
         </div>
 
