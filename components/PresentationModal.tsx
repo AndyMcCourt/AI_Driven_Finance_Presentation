@@ -80,11 +80,15 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 <button
                   key={`section-${visual.id}`}
                   onClick={() => setActiveVisualId(visual.id)}
-                  className={`w-full text-left rounded-xl border overflow-hidden transition-all h-full flex flex-col ${isActive ? 'border-cyan-200/80 bg-slate-900/80 opacity-100 shadow-[0_0_30px_rgba(34,211,238,0.25)]' : 'border-cyan-900/50 bg-slate-950/30 opacity-80 hover:opacity-100'}`}
+                  className={`w-full text-left rounded-xl border overflow-hidden transition-all h-full flex flex-col ${isActive ? 'border-cyan-200/80 bg-slate-900/85 opacity-100 shadow-[0_0_30px_rgba(34,211,238,0.25)]' : 'border-cyan-900/50 bg-slate-950/30 opacity-80 hover:opacity-100'}`}
                 >
                   <div className="relative h-44 md:h-48 border-b border-cyan-800/40">
-                    <img src={visual.image} alt={visual.label} className={`absolute inset-0 w-full h-full object-cover transition-opacity ${isActive ? 'opacity-80' : 'opacity-65'}`} />
-                    <div className="absolute inset-0 bg-slate-950/65" />
+                    <img
+                      src={visual.image}
+                      alt={visual.label}
+                      className={`absolute inset-0 w-full h-full object-cover transition-all ${isActive ? 'opacity-100 saturate-125 contrast-110 brightness-110' : 'opacity-65 saturate-75 brightness-75'}`}
+                    />
+                    <div className={`absolute inset-0 transition-colors ${isActive ? 'bg-slate-950/35' : 'bg-slate-950/65'}`} />
                     <div className="absolute bottom-4 left-4 right-4">
                       <h3 className={`text-cyan-100 text-xl md:text-2xl font-black uppercase tracking-wide transition-opacity ${isActive ? 'opacity-100' : 'opacity-60'}`}>{visual.label}</h3>
                     </div>
