@@ -8,8 +8,8 @@ const missionContextVisuals = [
     description:
     'AI is part of daily life — and Copilot Chat is already in our toolset',
     points: [
-      'AI is already in everyday use.',
-      'Copilot Chat can deliver quick productivity wins.'
+      'AI is already in everyday use',
+      'Copilot Chat can deliver quick productivity wins'
     ]
   },
   {
@@ -17,7 +17,7 @@ const missionContextVisuals = [
     label: 'Enterprise Rollout is Complex',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
     description:
-      'Scaling AI across a large organisation requires careful planning of many factors.',
+      'Scaling AI across a large organisation requires careful planning of many factors',
     points: [
       'Governance and Controls',
   	  'Licensing and Cost',
@@ -33,8 +33,8 @@ const missionContextVisuals = [
       'A tech-led roadmap is underway to standardise AI Implementations',
     points: [
       'Clear Business Roadmap',
-      'Unlocking of Technology.',
-	  'Finance Priorities Mapped',
+      'Unlocking of Technology',
+		  'Finance Priorities Mapped',
     ]
   }
 ];
@@ -45,10 +45,10 @@ const missionObjectiveVisuals = [
     label: 'Automate and Simplify',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
     description:
-      'AI removes repetitive workload to enable us to add value.',
+      'AI removes repetitive workload to enable us to add value',
     points: [
-      'Flexible Automation of Routine Work.',
-      'Agent Driven End to End Processes.'
+      'Flexible Automation of Routine Work',
+      'Agent Driven End to End Processes'
     ]
   },
   {
@@ -56,23 +56,23 @@ const missionObjectiveVisuals = [
     label: 'Strengthen Decision Quality',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200',
     description:
-      'AI helps finance teams reinforce judgement and influence business outcomes earlier.',
+      'AI helps finance teams reinforce judgement and influence business outcomes earlier',
     points: [
-      'Reinforce finance judgements.',
+      'Reinforce finance judgements',
       'Influence decisions earlier',
-	  'Anticipate Performance and Suggest Next Steps.'
+		  'Anticipate Performance and Suggest Next Steps'
     ]
   },
   {
     id: 'objective-risk',
     label: 'Risk and Policy Enablement',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200',
-    description: 'AI supports governance and controls processes.',
+    description: 'AI supports governance and controls processes',
     points: [
-		'Integrated Risk Management.',
-		'Faster Incorporation of Policies and Standards',
-		'Quicker Documentation'
-	]
+			'Integrated Risk Management',
+			'Faster Incorporation of Policies and Standards',
+			'Quicker Documentation'
+		]
   }
 ];
 
@@ -81,18 +81,18 @@ const missionUpdateVisuals = [
     id: 'update-use-cases',
     label: 'Use Case Pipeline',
     image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80&w=1200',
-    description: 'Momentum is real with a wide funnel of identified opportunities.',
-    points: ['75 finance use cases identified.']
+    description: 'Momentum is real with a wide funnel of identified opportunities',
+    points: ['75 finance use cases identified']
   },
   {
     id: 'update-community',
     label: 'People and Community',
     image: `${import.meta.env.BASE_URL}Assets/Fresh%20AIDeas%20Studio.png`,
     description:
-      'Capability is growing through teams, champions and practical knowledge sharing.',
+      'Capability is growing through teams, champions and practical knowledge sharing',
     points: [
-      'AI team established, supported by AI Champions.',
-      'Fresh (AI)deas in the Penny Bazaar.'
+      'AI team established, supported by AI Champions',
+      'Fresh (AI)deas in the Penny Bazaar'
     ]
   },
   {
@@ -101,9 +101,9 @@ const missionUpdateVisuals = [
     image: `${import.meta.env.BASE_URL}Assets/xelix_Logo.jpg`,
     description: 'We are already starting to implement AI capabilities...',
     points: [
-      'AI weekly trade note.',
-      'Copilot in Power BI.',
-      'Xelix in TSE.'
+      'AI weekly trade note',
+      'Copilot in Power BI',
+      'Xelix in TSE'
     ]
   }
 ];
@@ -116,9 +116,9 @@ const fy27Visuals = [
     description:
       'Scaling proven value and productionising what’s already working',
     points: [
-      'Xelix Roll-Out.',
+      'Xelix Roll-Out',
       'Expand Copilot Trade Note Across BUs',
-	  'AI for Documentation'
+		  'AI for Documentation'
     ]
   },
   {
@@ -126,7 +126,7 @@ const fy27Visuals = [
     label: 'Upgrade Insight for Partners',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
     description:
-      'Improve speed and quality of insight through Copilot + Power BI and faster delivery of reporting.',
+      'Improve speed and quality of insight through Copilot + Power BI and faster delivery of reporting',
     points: [
       'Everyday Reporting (AI Commentary and Insight)',
       'Action-Focused Analytics',
@@ -138,7 +138,7 @@ const fy27Visuals = [
     label: 'Enable Every Team',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
     description:
-      'Equip teams to leverage AI day-to-day through Copilot 365, role-based agents and training.',
+      'Equip teams to leverage AI day-to-day through Copilot 365, role-based agents and training',
     points: [
       'Targeted Use of Copilot 365',
 	  'Role-based Copilot Agents',
@@ -153,10 +153,10 @@ const finalMissionVisuals = [
     id: 'final-reflect',
     label: 'Mission Recap',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200',
-    description: 'Pause to reflect on progress before ending the presentation.',
+    description: 'Pause to reflect on progress before ending the presentation',
     points: [
-      'What’s working is ready to be scaled.',
-      'Teams are being enabled to leverage AI as part of everyday finance delivery.'
+      'What’s working is ready to be scaled',
+      'Teams are being enabled to leverage AI as part of everyday finance delivery'
     ]
   }
 ];
