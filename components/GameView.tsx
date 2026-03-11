@@ -9,6 +9,7 @@ const BASE_NEXT_NODE_ORBIT_RADIUS_X = 560;
 const BASE_NEXT_NODE_ORBIT_RADIUS_Y = 280;
 const BASE_SWARM_RADIUS_X = 760;
 const BASE_SWARM_RADIUS_Y = 460;
+const GLITCH_FLICKER_MS = 1400;
 
 const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`;
 const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
@@ -203,7 +204,7 @@ const GameView: React.FC = () => {
       return () => window.clearTimeout(countdownTimer);
     }
 
-    if (isBlackoutFlickering || isBlackout || showGlitchOverlay) return;
+    if (isBlackout || isBlackoutFlickering || showGlitchOverlay) return;
 
     setShowGlitchOverlay(true);
     setIsBlackoutFlickering(true);
@@ -212,7 +213,7 @@ const GameView: React.FC = () => {
       setIsBlackoutFlickering(false);
       setShowGlitchOverlay(false);
       setIsBlackout(true);
-    }, 1500);
+    }, GLITCH_FLICKER_MS);
 
     const rebootTimer = window.setTimeout(() => {
       setShowRebootButton(true);
@@ -222,7 +223,7 @@ const GameView: React.FC = () => {
       window.clearTimeout(flickerTimer);
       window.clearTimeout(rebootTimer);
     };
-  }, [isBlackout, isBlackoutFlickering, isMissionComplete, selfDestructSeconds, showGlitchOverlay, showRebootButton]);
+  }, [isBlackout, isMissionComplete, selfDestructSeconds, showRebootButton]);
 
   const activeSegment = segments.find((s) => s.id === activeSegmentId);
 
@@ -496,7 +497,7 @@ const GameView: React.FC = () => {
           transition={
             isBlackoutFlickering
               ? {
-                  duration: 1.5,
+                  duration: GLITCH_FLICKER_MS / 1000,
                   times: [0, 0.08, 0.16, 0.26, 0.36, 0.48, 0.58, 0.7, 0.8, 0.9, 1],
                   ease: 'linear',
                 }
