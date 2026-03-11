@@ -87,7 +87,7 @@ const missionUpdateVisuals = [
   {
     id: 'update-community',
     label: 'People and Community',
-    image: '/Assets/Fresh AIDeas Studio.png',
+    image: `${import.meta.env.BASE_URL}Assets/Fresh%20AIDeas%20Studio.png`,
     description:
       'Capability is growing through teams, champions and practical knowledge sharing.',
     points: [
@@ -98,7 +98,7 @@ const missionUpdateVisuals = [
   {
     id: 'update-trials',
     label: 'Live Trials',
-    image: '/Assets/xelix_Logo.jpg',
+    image: `${import.meta.env.BASE_URL}Assets/xelix_Logo.jpg`,
     description: 'We are already starting to implement AI capabilities...',
     points: [
       'AI weekly trade note.',
