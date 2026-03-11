@@ -465,7 +465,7 @@ const GameView: React.FC = () => {
       {isMissionComplete && (
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isBlackoutFlickering ? { opacity: [1, 0.2, 1, 0.1, 1, 0.15, 1] } : { opacity: 1 }}
+          animate={isBlackoutFlickering ? { opacity: [1, 0.2, 1, 0.1, 1, 0.3, 1, 0.15, 1, 0.05, 1] } : { opacity: 1 }}
           transition={isBlackoutFlickering ? { duration: 2.2, ease: 'easeInOut' } : { duration: 0.3 }}
           className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-12 text-center transition-colors duration-200 ${
             isBlackout ? 'bg-black' : 'bg-slate-950/80 backdrop-blur-2xl'
