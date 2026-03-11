@@ -6,7 +6,7 @@ const missionContextVisuals = [
     label: 'AI is Everywhere',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
     description:
-    'AI is part of daily life — and Copilot Chat is already in our toolset'
+    'AI is part of daily life — and Copilot Chat is already in our toolset',
     points: [
       'AI is already in everyday use — general‑purpose AI is now genuinely powerful.',
       'Copilot Chat is available to everyone and can deliver quick productivity wins.',
