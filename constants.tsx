@@ -8,9 +8,8 @@ const missionContextVisuals = [
     description:
     'AI is part of daily life — and Copilot Chat is already in our toolset',
     points: [
-      'AI is already in everyday use — general‑purpose AI is now genuinely powerful.',
-      'Copilot Chat is available to everyone and can deliver quick productivity wins.',
-      'Many people use AI‑enabled features without realising.'
+      'AI is already in everyday use.',
+      'Copilot Chat can deliver quick productivity wins.'
     ]
   },
   {
@@ -20,10 +19,10 @@ const missionContextVisuals = [
     description:
       'Scaling AI across a large organisation requires careful planning of many factors.',
     points: [
-      'Governance Guardrails access controls, and clear standards before wider deployment',
-  	  'Needs effective licensing and cost tracking',
-  	  'Data readiness required to produce trustworthy outputs - Garbage In Garbage Out',
-      'Balance short-term wins with a long-term strategy while the target keeps moving.'
+      'Governance and Controls',
+  	  'Licensing and Cost',
+  	  'Data readiness - Garbage In Garbage Out',
+      'AI is a Moving Target'
     ]
   },
   {
@@ -33,9 +32,9 @@ const missionContextVisuals = [
     description:
       'A tech-led roadmap is underway to standardise AI Implementations',
     points: [
-      'BCG Prioritisation - Focus on high‑value, practical wins',
-      'Finance use cases are being prioritised.',
-	  'Some capabilities moving from ad‑hoc experimentation to controlled rollout',
+      'Clear Business Roadmap',
+      'Unlocking of Technology.',
+	  'Finance Priorities Mapped',
     ]
   }
 ];
@@ -46,10 +45,10 @@ const missionObjectiveVisuals = [
     label: 'Automate and Simplify',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
     description:
-      'AI removes repetitive workload and simplifies end-to-end finance processes.',
+      'AI removes repetitive workload to enable us to add value.',
     points: [
-      'Automation of routine work.',
-      'Simplification of end-to-end processes (agentic workflows).'
+      'Flexible Automation of Routine Work.',
+      'Agent Driven End to End Processes.'
     ]
   },
   {
@@ -57,18 +56,23 @@ const missionObjectiveVisuals = [
     label: 'Strengthen Decision Quality',
     image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200',
     description:
-      'AI helps finance teams reinforce judgement and influence outcomes earlier.',
+      'AI helps finance teams reinforce judgement and influence business outcomes earlier.',
     points: [
       'Reinforce finance judgements.',
-      'Influence decisions earlier and anticipate performance.'
+      'Influence decisions earlier',
+	  'Anticipate Performance and Suggest Next Steps.'
     ]
   },
   {
     id: 'objective-risk',
     label: 'Risk and Policy Enablement',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200',
-    description: 'AI supports risk controls and smoother rollout of new policies.',
-    points: ['Manage risk.', 'Implement new policies.']
+    description: 'AI supports governance and controls processes.',
+    points: [
+		'Integrated Risk Management.',
+		'Faster Incorporation of Policies and Standards',
+		'Quicker Documentation'
+	]
   }
 ];
 
@@ -88,18 +92,18 @@ const missionUpdateVisuals = [
       'Capability is growing through teams, champions and practical knowledge sharing.',
     points: [
       'AI team established, supported by AI Champions.',
-      'Practical AI tools and tips shared in the Penny Bazaar.'
+      'Fresh (AI)deas in the Penny Bazaar.'
     ]
   },
   {
     id: 'update-trials',
     label: 'Live Trials',
     image: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&q=80&w=1200',
-    description: 'Pilots are running across insight, communication and automation.',
+    description: 'We are already starting to implement AI capabilities...',
     points: [
-      'AI weekly trade note being trialled.',
-      'Copilot in Power BI triallists.',
-      'Xelix (Accounts Payable Automation) being trialled in TSE.'
+      'AI weekly trade note.',
+      'Copilot in Power BI.',
+      'Xelix in TSE.'
     ]
   }
 ];
@@ -110,11 +114,11 @@ const fy27Visuals = [
     label: 'Scale What Works',
     image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1200',
     description:
-      'FY27 focuses on scaling proven value and productionising what’s already working.',
+      'Scaling proven value and productionising what’s already working',
     points: [
-      'Roll out Xelix in all Business Units.',
-      'Template and roll out proven pilots (e.g., trade note) where they add value.',
-      'Focus on delivering use cases with the tools at hand (properly exploring the tools).'
+      'Xelix Roll-Out.',
+      'Expand Copilot Trade Note Across BUs',
+	  'AI for Documentation'
     ]
   },
   {
@@ -124,8 +128,9 @@ const fy27Visuals = [
     description:
       'Improve speed and quality of insight through Copilot + Power BI and faster delivery of reporting.',
     points: [
-      'Use smart narratives and/or Copilot in Power BI for better partner insight.',
-      'Use Databricks AI and/or Copilot Studio to speed up delivery of insight and reporting.'
+      'Everyday Reporting (AI Commentary and Insight)',
+      'Enhance Analytics Capability',
+	  'Improve Speed of Outputs'
     ]
   },
   {
@@ -133,11 +138,12 @@ const fy27Visuals = [
     label: 'Enable Every Team',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
     description:
-      'Equip teams to leverage AI day-to-day through Copilot 365, role-based agents and training—while building foundations.',
+      'Equip teams to leverage AI day-to-day through Copilot 365, role-based agents and training.',
     points: [
-      'Roll out Copilot 365 where available and support creation of role-based agents (docs, decks, policies).',
-      'Train AI Champions beyond kick-off sessions to support their teams.',
-      'Continue groundwork: data readiness (e.g., EDW to Beam), S4 delivery, governance and licences.'
+      'Targeted Use of Copilot 365',
+	  'Role-based Copilot Agents',
+      'Establish and Train AI Champions',
+	  'Continous Improvement of Data Infrastructure'
     ]
   }
 ];
