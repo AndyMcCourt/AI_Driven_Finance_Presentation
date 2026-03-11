@@ -87,7 +87,7 @@ const missionUpdateVisuals = [
   {
     id: 'update-community',
     label: 'People and Community',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200',
+    image: '/Assets/Fresh AIDeas Studio.png',
     description:
       'Capability is growing through teams, champions and practical knowledge sharing.',
     points: [
@@ -98,7 +98,7 @@ const missionUpdateVisuals = [
   {
     id: 'update-trials',
     label: 'Live Trials',
-    image: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&q=80&w=1200',
+    image: '/Assets/xelix_Logo.jpg',
     description: 'We are already starting to implement AI capabilities...',
     points: [
       'AI weekly trade note.',
