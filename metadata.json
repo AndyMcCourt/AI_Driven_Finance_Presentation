@@ -1,5 +1,5 @@
 {
-  "name": "Finance Mission Control",
-  "description": "A futuristic 'Minority Report' style dashboard for AI-Driven Finance. Drag data nodes into the central activation zone to enlarge and synchronize the FY27 roadmap.",
+  "name": "Finance R&A Weekly Wrap",
+  "description": "A futuristic weekly wrap dashboard for Finance R&A. Drag agenda nodes into the central activation zone to launch thank yous, Ian’s update, the Data Ops spotlight and the quiz.",
   "requestFramePermissions": []
 }
