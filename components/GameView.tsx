@@ -15,24 +15,27 @@ const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`
 const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
 
 const PSEUDO_NODE_LABELS = [
-  'Variance Engine',
-  'Forecast Model',
-  'Ledger Twin',
-  'Anomaly Detector',
-  'Scenario Engine',
-  'Signal Processor',
-  'Margin Predictor',
-  'Control Monitor',
-  'Lineage Tracker',
-  'Policy Engine',
-  'Liquidity Model',
-  'Cost Driver Model',
-  'Revenue Detector',
-  'Narrative Generator',
-  'Risk Analyzer',
-  'Cashflow Predictor',
-  'Governance Monitor',
-  'Insight Synthesizer'
+  'Weekly Wins',
+  'Recognition Feed',
+  'Team Pulse',
+  'Ian Channel',
+  'Priority Radar',
+  'Action Tracker',
+  'Data Ops Hub',
+  'Shravan Spotlight',
+  'Reporting Flow',
+  'Insight Queue',
+  'Analyst Agent',
+  'Opus Comparator',
+  'General Copilot',
+  'Zam Send-off',
+  'Wedding Wishes',
+  'Quiz Lobby',
+  'Scoreboard',
+  'Quick-fire Round',
+  'Follow-up Log',
+  'Next Week Signal',
+  'Wrap Archive'
 ];
 
 const getActivationCardTitle = (title: string) => title.split(':')[0].trim();
@@ -147,9 +150,7 @@ const GameView: React.FC = () => {
 
       if (index + 1 < next.length) {
         next[index + 1].status = 'available';
-      }
-
-      if (segmentId === 'final') {
+      } else {
         setSelfDestructSeconds(3);
         setIsBlackout(false);
         setIsBlackoutFlickering(false);
@@ -176,11 +177,7 @@ const GameView: React.FC = () => {
     const distance = getDistanceFromCenter(info.point.x, info.point.y);
 
     if (distance < activationRadius && segment.status !== 'locked') {
-      if (segment.id === 'final') {
-        completeSegment(segment.id);
-      } else {
-        setActiveSegmentId(segment.id);
-      }
+      setActiveSegmentId(segment.id);
     }
   };
 
@@ -254,22 +251,20 @@ const GameView: React.FC = () => {
         <div className="flex items-center gap-3">
           <img src={MNS_LOGO_SRC} alt="MnS Square Snip" className="h-12 w-auto object-contain" />
           <div>
-            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Driven Finance Console</h1>
-            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">M&amp;S DIGITAL FINANCE TRANSFORMATION</p>
+            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">Finance R&A Weekly Wrap</h1>
+            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">12TH JUNE 2026 // WEEKLY BRIEFING</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 lg:gap-6 lg:scale-100 origin-right">
-          <StatBox label="DATA INTEGRITY" value={missionState.dataIntegrity} color="cyan" />
-          <StatBox label="AI READINESS" value={missionState.aiReadiness} color="emerald" />
-          <StatBox label="EFFICIENCY" value={missionState.efficiency} color="violet" />
+          <StatBox label="WRAP ENERGY" value={missionState.dataIntegrity} color="cyan" />
+          <StatBox label="TEAM MOMENTUM" value={missionState.aiReadiness} color="emerald" />
+          <StatBox label="QUIZ READINESS" value={missionState.efficiency} color="violet" />
           <img src={RNA_LOGO_SRC} alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
         </div>
       </header>
 
       <main className="flex-1 relative flex flex-col lg:flex-row">
-        
-
         <section className="relative flex-1 overflow-hidden">
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-45" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M88,50 C74,50 63,50 50,50" stroke="rgba(34,211,238,0.5)" strokeWidth="0.4" fill="none" strokeDasharray="2 2" />
@@ -315,7 +310,7 @@ const GameView: React.FC = () => {
                 </div>
                 <div className={`w-32 h-[3px] mb-6 rounded-full transition-all ${isDraggingOverCenter ? 'bg-cyan-100 shadow-[0_0_20px_rgba(125,211,252,0.95)]' : 'bg-cyan-100/55'}`} />
                 <div className={`text-sm lg:text-lg max-w-[320px] uppercase leading-relaxed font-bold tracking-[0.12em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
-                  Drop node inside this circle to launch the synchronized briefing overlay.
+                  Drop node inside this circle to launch the weekly wrap segment.
                 </div>
               </div>
             </motion.div>
@@ -424,16 +419,16 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Analyze all strategic sectors to synchronize the AI-Driven Finance roadmap for FY27.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through today’s Finance R&A weekly wrap: thank yous, Ian’s update, Data Ops spotlight, AI tool comparison, Zam’s wedding send-off and quiz.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">
-            <h3 className="text-sm font-black text-cyan-300/70 tracking-widest">SECTOR STATUS</h3>
+            <h3 className="text-sm font-black text-cyan-300/70 tracking-widest">WRAP AGENDA</h3>
             {segments.map((s) => (
               <div key={s.id} className="flex items-center justify-between text-xs border-b border-cyan-400/10 pb-2">
                 <span className="uppercase text-cyan-100/85">{s.title}</span>
                 <span
-                  onClick={() => s.status !== 'locked' && (s.id === 'final' ? completeSegment(s.id) : setActiveSegmentId(s.id))}
+                  onClick={() => s.status !== 'locked' && setActiveSegmentId(s.id)}
                   className={`font-bold ${s.status === 'completed' ? 'text-emerald-300 cursor-pointer hover:text-emerald-200' : s.status === 'available' ? 'text-cyan-300 cursor-pointer hover:text-cyan-100' : 'text-slate-500 cursor-not-allowed'}`}
                 >
                   {s.status.toUpperCase()}
@@ -443,7 +438,7 @@ const GameView: React.FC = () => {
           </div>
 
           <div className="h-32 border-t border-cyan-400/20 pt-4">
-            <div className="text-[10px] text-cyan-300/60 mb-2 tracking-[0.25em]">ENCRYPTION LEVEL: AES-256-GCM</div>
+            <div className="text-[10px] text-cyan-300/60 mb-2 tracking-[0.25em]">WRAP CHANNEL: FINANCE R&A</div>
             <div className="flex gap-1">
               {Array.from({ length: 20 }).map((_, i) => (
                 <div key={i} className="flex-1 h-4 bg-cyan-300/10 rounded-sm overflow-hidden">
@@ -456,7 +451,7 @@ const GameView: React.FC = () => {
       </main>
 
       <footer className="min-h-10 border-t border-cyan-400/20 bg-slate-900/35 backdrop-blur-xl flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 md:px-6 py-2 text-xs font-bold text-cyan-300/60">
-        <div>SEAMLESS INTERFACE // ID: MCR-FIN-2026</div>
+        <div>FINANCE R&A WEEKLY WRAP // 12 JUN 2026</div>
         <div className="flex gap-4">
           <span>LAT: 53.4808° N</span>
           <span>LON: 2.2426° W</span>
@@ -509,8 +504,8 @@ const GameView: React.FC = () => {
         >
           {!isBlackout && !showGlitchOverlay && (
             <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
-              <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Mission Complete</h2>
-              <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">This Message will self destruct in {selfDestructSeconds} seconds</p>
+              <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Wrap Complete</h2>
+              <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">This wrap will close in {selfDestructSeconds} seconds</p>
             </motion.div>
           )}
 
@@ -545,7 +540,7 @@ const GameView: React.FC = () => {
               onClick={() => window.location.reload()}
               className="px-12 py-6 bg-cyan-300/20 hover:bg-cyan-300/35 text-cyan-100 font-black text-2xl rounded-xl transition-all border border-cyan-200/50 shadow-[0_0_50px_rgba(125,211,252,0.3)]"
             >
-              REBOOT SYSTEM
+              RESTART WRAP
             </motion.button>
           )}
         </motion.div>
