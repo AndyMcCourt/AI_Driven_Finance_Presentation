@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [codex/reuse-presentation-app-for-finance-ra-wrap]
   workflow_dispatch:
 
 permissions:
