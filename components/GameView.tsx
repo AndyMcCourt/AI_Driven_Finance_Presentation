@@ -25,9 +25,6 @@ const PSEUDO_NODE_LABELS = [
   'Shravan Spotlight',
   'Reporting Flow',
   'Insight Queue',
-  'Analyst Agent',
-  'Opus Comparator',
-  'General Copilot',
   'Zam Send-off',
   'Wedding Wishes',
   'Quiz Lobby',
@@ -419,7 +416,7 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through today’s Finance R&A weekly wrap: thank yous, Ian’s update, Data Ops spotlight, AI tool comparison, Zam’s wedding send-off and quiz.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through today’s Finance R&A weekly wrap: thank yous, Ian’s update, Data Ops spotlight, Zam’s wedding send-off and quiz.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">

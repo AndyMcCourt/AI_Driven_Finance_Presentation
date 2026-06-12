@@ -108,42 +108,6 @@ const dataOpsVisuals = [
   }
 ];
 
-const analystAgentVisuals = [
-  {
-    id: 'agent-comparison-context',
-    label: 'Why Compare?',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
-    description: 'Introduce the analysis comparing the Analyst Agent with Opus and General Copilot for finance work.',
-    points: [
-      'What questions the comparison was designed to answer.',
-      'Which tasks or prompts were used across the tools.',
-      'How the results link back to everyday Finance R&A use cases.'
-    ]
-  },
-  {
-    id: 'agent-comparison-findings',
-    label: 'Key Findings',
-    image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=1200',
-    description: 'Share the practical differences observed between Analyst Agent, Opus and General Copilot.',
-    points: [
-      'Where each tool appeared strongest.',
-      'Trade-offs around speed, depth, usability and confidence.',
-      'Examples of outputs that changed the recommendation.'
-    ]
-  },
-  {
-    id: 'agent-comparison-next-steps',
-    label: 'So What?',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200',
-    description: 'Translate the analysis into guidance for how the team should experiment with these tools next.',
-    points: [
-      'When to use Analyst Agent versus broader AI assistants.',
-      'What needs more testing before any recommendation is firm.',
-      'Where Finance R&A can trial the approach safely.'
-    ]
-  }
-];
-
 const zamWeddingVisuals = [
   {
     id: 'zam-congratulations',
@@ -199,7 +163,7 @@ const quizVisuals = [
     description: 'Use rounds that can flex between Finance R&A knowledge, M&S facts and Data Ops spotlight takeaways.',
     points: [
       'Round 1: weekly wrap recap.',
-      'Round 2: spotlight questions from Data Ops, AI tools and Zam’s send-off.',
+      'Round 2: spotlight questions from Data Ops and Zam’s send-off.',
       'Round 3: quick-fire bonus points.'
     ]
   },
@@ -266,24 +230,8 @@ export const SEGMENTS: PresentationSegment[] = [
     coordinates: { x: 75, y: 30 }
   },
   {
-    id: 'agent-comparison-spotlight',
-    title: 'Spotlight on... Analyst Agent vs Opus vs General Copilot',
-    strapline: 'A practical comparison of AI tools for analysis work.',
-    content: 'A spotlight on analysis comparing the Analyst Agent with Opus and General Copilot.',
-    bullets: [
-      'Explain the comparison approach and example tasks.',
-      'Share strengths, limitations and standout differences.',
-      'Discuss what the findings mean for Finance R&A experimentation.'
-    ],
-    summary: 'Practical AI comparison: what worked, what did not, and where to try next.',
-    visuals: analystAgentVisuals,
-    icon: '🤖',
-    status: 'locked',
-    coordinates: { x: 30, y: 55 }
-  },
-  {
     id: 'zam-wedding',
-    title: 'All the best for your wedding, Zam',
+    title: 'A special mention',
     strapline: 'A team send-off before the big day.',
     content: 'A warm moment to wish Zam and his partner all the very best for their wedding.',
     bullets: [
