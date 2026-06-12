@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { PresentationSegment, SegmentVisual } from '../types';
 
@@ -16,12 +16,7 @@ const fallbackVisual = (segment: PresentationSegment): SegmentVisual => ({
 });
 
 const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose }) => {
-  const visualItems = useMemo(() => (segment.visuals?.length ? segment.visuals : [fallbackVisual(segment)]), [segment]);
-  const [activeVisualId, setActiveVisualId] = useState(visualItems[0].id);
-
-  useEffect(() => {
-    setActiveVisualId(visualItems[0].id);
-  }, [segment.id, visualItems]);
+  const primaryVisual = useMemo(() => segment.visuals?.[0] ?? fallbackVisual(segment), [segment]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -35,8 +30,6 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
     window.addEventListener('keydown', handleKeyDown, true);
     return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [onClose]);
-
-  const activeVisual = visualItems.find((item) => item.id === activeVisualId) ?? visualItems[0];
 
   return (
     <motion.div
@@ -63,60 +56,46 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
             <div className="flex-1">
               <h2 className="text-2xl md:text-4xl font-black text-cyan-100 tracking-tight leading-tight uppercase">{segment.title}</h2>
               {segment.strapline && <p className="text-cyan-300 mt-2 text-sm md:text-lg font-semibold">{segment.strapline}</p>}
-              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-2">Interactive Briefing // click a panel to reveal content</p>
+              <p className="text-cyan-800 font-bold tracking-[0.2em] uppercase text-[10px] mt-2">Briefing Segment // review content</p>
             </div>
           </div>
         </div>
 
         <div className="flex-1 min-h-0 px-8 md:px-12 py-3 md:py-4 flex flex-col gap-2 md:gap-3 overflow-hidden">
-          <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden pr-1 custom-scrollbar-v">
-            <div className="grid h-full grid-cols-1 xl:grid-cols-3 gap-3 md:gap-4 auto-rows-fr">
-            {visualItems.map((visual) => {
-              const isActive = visual.id === activeVisual.id;
-              const points = visual.points || segment.bullets || [];
-              const visiblePoints = points;
+          <div className="flex-1 min-h-0 overflow-y-auto pr-1 custom-scrollbar-v">
+            <div className="h-full rounded-xl border border-cyan-200/70 bg-slate-900/85 overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.22)] flex flex-col lg:flex-row">
+              <div className="relative h-56 md:h-64 lg:h-auto lg:w-[42%] border-b lg:border-b-0 lg:border-r border-cyan-800/40 shrink-0">
+                <img
+                  src={primaryVisual.image}
+                  alt={segment.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 saturate-125 contrast-110 brightness-105"
+                />
+                <div className="absolute inset-0 bg-slate-950/35" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-cyan-100 text-xl md:text-3xl font-black uppercase tracking-wide">{segment.summary}</h3>
+                </div>
+              </div>
 
-              return (
-                <button
-                  key={`section-${visual.id}`}
-                  onClick={() => setActiveVisualId(visual.id)}
-                  className={`w-full text-left rounded-xl border overflow-hidden transition-all h-full flex flex-col ${isActive ? 'border-cyan-200/80 bg-slate-900/85 opacity-100 shadow-[0_0_30px_rgba(34,211,238,0.25)]' : 'border-cyan-900/50 bg-slate-950/30 opacity-80 hover:opacity-100'}`}
-                >
-                  <div className="relative h-44 md:h-48 border-b border-cyan-800/40">
-                    <img
-                      src={visual.image}
-                      alt={visual.label}
-                      className={`absolute inset-0 w-full h-full object-cover transition-all ${isActive ? 'opacity-100 saturate-125 contrast-110 brightness-110' : 'opacity-65 saturate-75 brightness-75'}`}
-                    />
-                    <div className={`absolute inset-0 transition-colors ${isActive ? 'bg-slate-950/35' : 'bg-slate-950/65'}`} />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className={`text-cyan-100 text-xl md:text-2xl font-black uppercase tracking-wide transition-opacity ${isActive ? 'opacity-100' : 'opacity-60'}`}>{visual.label}</h3>
-                    </div>
-                  </div>
+              <div className="p-5 md:p-8 flex-1 flex flex-col justify-center">
+                <p className="text-slate-100 text-lg md:text-2xl leading-relaxed mb-6">{segment.content}</p>
 
-                  <div className="p-5 md:p-6 flex-1 overflow-hidden">
-                    <p className={`text-slate-100 text-base md:text-lg leading-relaxed mb-4 transition-opacity ${isActive ? 'opacity-100' : 'opacity-55'}`}>{visual.description}</p>
-
-                    {visiblePoints.length > 0 && (
-                      <ul className="space-y-3 md:space-y-4">
-                        {visiblePoints.map((point, idx) => (
-                          <motion.li
-                            key={`${visual.id}-${idx}`}
-                            initial={{ opacity: 0, x: 12 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.08 }}
-                            className="flex items-start gap-4"
-                          >
-                            <span className={`text-cyan-400 mt-1 transition-opacity ${isActive ? 'opacity-100' : 'opacity-50'}`}>◈</span>
-                            <span className={`text-slate-300 text-base md:text-lg leading-relaxed transition-opacity ${isActive ? 'opacity-100' : 'opacity-55'}`}>{point}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
+                {segment.bullets.length > 0 && (
+                  <ul className="space-y-4 md:space-y-5">
+                    {segment.bullets.map((point, idx) => (
+                      <motion.li
+                        key={`${segment.id}-${idx}`}
+                        initial={{ opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.08 }}
+                        className="flex items-start gap-4"
+                      >
+                        <span className="text-cyan-400 mt-1 opacity-100">◈</span>
+                        <span className="text-slate-300 text-base md:text-xl leading-relaxed">{point}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
         </div>
