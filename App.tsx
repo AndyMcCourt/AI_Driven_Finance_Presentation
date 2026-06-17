@@ -14,7 +14,7 @@ type Rect = { top: number; left: number; width: number; height: number };
 const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const [isLaunching, setIsLaunching] = useState(false);
   const [targetRect, setTargetRect] = useState<Rect | null>(null);
-  const weeklyWrapCellRef = useRef<HTMLDivElement | null>(null);
+  const aiUniteCellRef = useRef<HTMLDivElement | null>(null);
   const hasStartedRef = useRef(false);
   const launchTimeoutRef = useRef<number | null>(null);
 
@@ -36,7 +36,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
     if (!isLaunching) return;
 
     const readTargetRect = () => {
-      const rect = weeklyWrapCellRef.current?.getBoundingClientRect();
+      const rect = aiUniteCellRef.current?.getBoundingClientRect();
       if (!rect) return;
 
       setTargetRect({
@@ -118,7 +118,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
         <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-cyan-300/80">Welcome</p>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight">Finance R&A Weekly Wrap</h1>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight">AI Unite</h1>
           </div>
         </div>
 
@@ -130,13 +130,13 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                 <path d="M8 20h8M12 16v4M7 8l3 3 2-2 2 2 3-3" />
               </svg>
             </div>
-            <span className="text-xl font-medium">Finance R&A Weekly Wrap</span>
+            <span className="text-xl font-medium">AI Unite</span>
           </div>
           <div className="grid grid-cols-3 text-center text-[#12343f] text-sm relative">
-            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Thank yous</div>
-            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Ian’s Mind</div>
-            <div ref={weeklyWrapCellRef} className="bg-[#c7dde3] py-2.5 font-medium relative">
-              Spotlights + Quiz
+            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Welcome and pulse</div>
+            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Bernie</div>
+            <div ref={aiUniteCellRef} className="bg-[#c7dde3] py-2.5 font-medium relative">
+              Databricks AI
             </div>
           </div>
         </div>

@@ -15,24 +15,18 @@ const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`
 const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
 
 const PSEUDO_NODE_LABELS = [
-  'Weekly Wins',
-  'Recognition Feed',
   'Team Pulse',
-  'Ian Channel',
-  'Priority Radar',
-  'Action Tracker',
-  'Data Ops Hub',
-  'Shravan Spotlight',
-  'Reporting Flow',
+  'Welcome Signal',
+  'Pulse Check',
+  'Bernie Channel',
+  'Seb Bacon Spotlight',
+  'Spotlight Queue',
+  'Databricks Hub',
+  'AI Lab',
+  'Lakehouse Signal',
+  'Workflow Ideas',
   'Insight Queue',
-  'Zam Send-off',
-  'Wedding Wishes',
-  'Quiz Lobby',
-  'Scoreboard',
-  'Quick-fire Round',
-  'Follow-up Log',
-  'Next Week Signal',
-  'Wrap Archive'
+  'Follow-up Log'
 ];
 
 const getActivationCardTitle = (title: string) => title.split(':')[0].trim();
@@ -248,15 +242,15 @@ const GameView: React.FC = () => {
         <div className="flex items-center gap-3">
           <img src={MNS_LOGO_SRC} alt="MnS Square Snip" className="h-12 w-auto object-contain" />
           <div>
-            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">Finance R&A Weekly Wrap</h1>
-            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">12TH JUNE 2026 // WEEKLY BRIEFING</p>
+            <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Unite</h1>
+            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">18TH JUNE 2026 // AI UNITE</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 lg:gap-6 lg:scale-100 origin-right">
-          <StatBox label="WRAP ENERGY" value={missionState.dataIntegrity} color="cyan" />
-          <StatBox label="TEAM MOMENTUM" value={missionState.aiReadiness} color="emerald" />
-          <StatBox label="QUIZ READINESS" value={missionState.efficiency} color="violet" />
+          <StatBox label="UNITE ENERGY" value={missionState.dataIntegrity} color="cyan" />
+          <StatBox label="TEAM PULSE" value={missionState.aiReadiness} color="emerald" />
+          <StatBox label="AI READINESS" value={missionState.efficiency} color="violet" />
           <img src={RNA_LOGO_SRC} alt="RnA Logo" className="h-12 w-auto object-contain mix-blend-multiply" />
         </div>
       </header>
@@ -307,7 +301,7 @@ const GameView: React.FC = () => {
                 </div>
                 <div className={`w-32 h-[3px] mb-6 rounded-full transition-all ${isDraggingOverCenter ? 'bg-cyan-100 shadow-[0_0_20px_rgba(125,211,252,0.95)]' : 'bg-cyan-100/55'}`} />
                 <div className={`text-sm lg:text-lg max-w-[320px] uppercase leading-relaxed font-bold tracking-[0.12em] transition-colors ${isDraggingOverCenter ? 'text-cyan-50' : 'text-cyan-100/80'}`}>
-                  Drop node inside this circle to launch the weekly wrap segment.
+                  Drop node inside this circle to launch the AI Unite segment.
                 </div>
               </div>
             </motion.div>
@@ -416,11 +410,11 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through today’s Finance R&A weekly wrap: thank yous, Ian’s update, Data Ops spotlight, Zam’s wedding send-off and quiz.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome and pulse, Bernie with Seb Bacon, and Databricks AI.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">
-            <h3 className="text-sm font-black text-cyan-300/70 tracking-widest">WRAP AGENDA</h3>
+            <h3 className="text-sm font-black text-cyan-300/70 tracking-widest">AI UNITE AGENDA</h3>
             {segments.map((s) => (
               <div key={s.id} className="flex items-center justify-between text-xs border-b border-cyan-400/10 pb-2">
                 <span className="uppercase text-cyan-100/85">{s.title}</span>
@@ -435,7 +429,7 @@ const GameView: React.FC = () => {
           </div>
 
           <div className="h-32 border-t border-cyan-400/20 pt-4">
-            <div className="text-[10px] text-cyan-300/60 mb-2 tracking-[0.25em]">WRAP CHANNEL: FINANCE R&A</div>
+            <div className="text-[10px] text-cyan-300/60 mb-2 tracking-[0.25em]">AI UNITE CHANNEL</div>
             <div className="flex gap-1">
               {Array.from({ length: 20 }).map((_, i) => (
                 <div key={i} className="flex-1 h-4 bg-cyan-300/10 rounded-sm overflow-hidden">
@@ -448,7 +442,7 @@ const GameView: React.FC = () => {
       </main>
 
       <footer className="min-h-10 border-t border-cyan-400/20 bg-slate-900/35 backdrop-blur-xl flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 md:px-6 py-2 text-xs font-bold text-cyan-300/60">
-        <div>FINANCE R&A WEEKLY WRAP // 12 JUN 2026</div>
+        <div>AI UNITE // 18 JUN 2026</div>
         <div className="flex gap-4">
           <span>LAT: 53.4808° N</span>
           <span>LON: 2.2426° W</span>
@@ -501,8 +495,8 @@ const GameView: React.FC = () => {
         >
           {!isBlackout && !showGlitchOverlay && (
             <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="max-w-2xl rounded-2xl border border-cyan-300/35 bg-cyan-300/5 p-10 shadow-[0_0_120px_rgba(34,211,238,0.2)]">
-              <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">Wrap Complete</h2>
-              <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">This wrap will close in {selfDestructSeconds} seconds</p>
+              <h2 className="text-6xl font-black text-cyan-100 mb-6 tracking-tight uppercase">AI Unite Complete</h2>
+              <p className="text-xl text-cyan-50/85 mb-2 leading-relaxed">AI Unite will close in {selfDestructSeconds} seconds</p>
             </motion.div>
           )}
 
@@ -537,7 +531,7 @@ const GameView: React.FC = () => {
               onClick={() => window.location.reload()}
               className="px-12 py-6 bg-cyan-300/20 hover:bg-cyan-300/35 text-cyan-100 font-black text-2xl rounded-xl transition-all border border-cyan-200/50 shadow-[0_0_50px_rgba(125,211,252,0.3)]"
             >
-              RESTART WRAP
+              RESTART AI UNITE
             </motion.button>
           )}
         </motion.div>

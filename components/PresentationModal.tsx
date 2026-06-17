@@ -71,9 +71,6 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                   className="absolute inset-0 w-full h-full object-cover opacity-90 saturate-125 contrast-110 brightness-105"
                 />
                 <div className="absolute inset-0 bg-slate-950/35" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-cyan-100 text-xl md:text-3xl font-black uppercase tracking-wide">{segment.summary}</h3>
-                </div>
               </div>
 
               <div className="p-5 md:p-8 flex-1 flex flex-col justify-center">
