@@ -5,12 +5,13 @@ const welcomeVisuals = [
     id: 'ai-unite-welcome',
     label: 'Welcome',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
-    description: 'Open AI Unite with energy, context, a quick team pulse and a preview of the two spotlight segments.',
+    description: 'Open AI Unite with a short welcome, team pulse and guest introduction.',
     points: [
       'Welcome everyone to AI Unite.',
-      'Check the room and team pulse.',
-      'Preview the Bernie spotlight with Seb Bacon.',
-      'Preview the Databricks AI spotlight and expected takeaways.'
+      'Check the team pulse.',
+      'Introduce Oliver Healey from the AI adoption team.',
+      'Drop-in sessions start next Thursday.',
+      'Set up the spotlight segments.'
     ]
   }
 ];
@@ -74,13 +75,14 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'welcome-and-pulse',
     title: 'Welcome and pulse',
-    strapline: 'Opening AI Unite, checking the room and previewing the agenda.',
-    content: 'Welcome everyone to AI Unite, take a quick team pulse, and give the room a clear breakdown of the two spotlight segments that follow.',
+    strapline: 'A quick welcome and team pulse.',
+    content: 'Welcome everyone to AI Unite, take a quick team pulse, introduce Oliver Healey and flag drop-in sessions starting next Thursday.',
     bullets: [
-      'Welcome the team to AI Unite and frame the purpose of the session.',
-      'Check the team pulse, energy in the room and any immediate priorities.',
-      'Segment 2: Spotlight on Bernie with Seb Bacon — story, context, key takeaways and team questions.',
-      'Segment 3: Spotlight on Databricks AI — practical use cases, workflow opportunities and next steps to investigate.'
+      'Welcome the team.',
+      'Check the room pulse.',
+      'Joined by Oliver Healey from the AI adoption team.',
+      'Drop-in sessions added from next Thursday.',
+      'Set up Bernie and Databricks AI.'
     ],
     visuals: welcomeVisuals,
     icon: '👋',
