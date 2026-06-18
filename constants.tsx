@@ -11,8 +11,8 @@ const welcomeVisuals = [
       'Drop-in sessions start next Thursday.',
       'Check the team pulse.',
       'Pulse polls walkthrough.',
-      'Spotlight on... Bernie',
       'Spotlight on... Databricks AI Assisted Development',
+      'Spotlight on... Bernie',
       'Open Floor'
     ]
   }
@@ -97,8 +97,8 @@ export const SEGMENTS: PresentationSegment[] = [
       'Drop-in sessions start next Thursday.',
       'Check the team pulse.',
       'Pulse polls walkthrough.',
-      'Spotlight on... Bernie',
       'Spotlight on... Databricks AI Assisted Development',
+      'Spotlight on... Bernie',
       'Open Floor'
     ],
     visuals: welcomeVisuals,
@@ -122,19 +122,6 @@ export const SEGMENTS: PresentationSegment[] = [
     coordinates: { x: 42, y: 46 }
   },
   {
-    id: 'bernie-spotlight',
-    title: 'Spotlight on... Bernie (Seb Bacon)',
-    strapline: 'A focused spotlight.',
-    content: 'A Spotlight from Seb on Bernie.',
-    bullets: [
-      'Food Finance - New FBP Agent'
-    ],
-    visuals: bernieVisuals,
-    icon: '🔦',
-    status: 'locked',
-    coordinates: { x: 58, y: 60 }
-  },
-  {
     id: 'databricks-ai-spotlight',
     title: 'Spotlight on... Databricks AI',
     strapline: 'A practical look at Databricks AI.',
@@ -147,6 +134,19 @@ export const SEGMENTS: PresentationSegment[] = [
     ],
     visuals: databricksAiVisuals,
     icon: '🤖',
+    status: 'locked',
+    coordinates: { x: 58, y: 60 }
+  },
+  {
+    id: 'bernie-spotlight',
+    title: 'Spotlight on... Bernie (Seb Bacon)',
+    strapline: 'A focused spotlight.',
+    content: 'A Spotlight from Seb on Bernie.',
+    bullets: [
+      'Food Finance - New FBP Agent'
+    ],
+    visuals: bernieVisuals,
+    icon: '🔦',
     status: 'locked',
     coordinates: { x: 75, y: 30 }
   },
