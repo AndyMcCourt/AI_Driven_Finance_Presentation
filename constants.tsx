@@ -43,6 +43,33 @@ const databricksAiVisuals = [
   }
 ];
 
+
+const supportForumVisuals = [
+  {
+    id: 'open-support-forum-visual',
+    label: 'Open Support Forum',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200',
+    description: 'Open the floor for questions, ideas, support needs and shared problem solving across AI Unite.',
+    points: [
+      'Invite open questions from the room.',
+      'Surface support needs, blockers and ideas.',
+      'Agree owners for follow-ups where useful.'
+    ]
+  }
+];
+
+const thankYouVisuals = [
+  {
+    id: 'thank-you-visual',
+    label: 'Thank You',
+    image: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&q=80&w=1200',
+    description: 'Close AI Unite with a simple thank you.',
+    points: [
+      'Thank you.'
+    ]
+  }
+];
+
 export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'welcome-and-pulse',
@@ -89,6 +116,34 @@ export const SEGMENTS: PresentationSegment[] = [
     icon: '🤖',
     status: 'locked',
     coordinates: { x: 75, y: 30 }
+  },
+  {
+    id: 'open-support-forum',
+    title: 'Open Support Forum',
+    strapline: 'An open space for support, questions and shared problem solving.',
+    content: 'Open the floor for the team to raise questions, support needs, blockers and ideas that would benefit from group input.',
+    bullets: [
+      'Invite questions and reflections from the room.',
+      'Discuss support needs, blockers and opportunities for collaboration.',
+      'Capture follow-ups, owners and next steps where useful.'
+    ],
+    visuals: supportForumVisuals,
+    icon: '💬',
+    status: 'locked',
+    coordinates: { x: 45, y: 78 }
+  },
+  {
+    id: 'thank-you',
+    title: 'Thank You',
+    strapline: 'Thank you.',
+    content: 'Thank you.',
+    bullets: [
+      'Thank you.'
+    ],
+    visuals: thankYouVisuals,
+    icon: '🙏',
+    status: 'locked',
+    coordinates: { x: 70, y: 72 }
   }
 ];
 
