@@ -84,7 +84,6 @@ export const SEGMENTS: PresentationSegment[] = [
       'Spotlight on... Bernie',
       'Spotlight on... Databricks AI Assisted Development',
       'Open Floor'
-    ]
     ],
     visuals: welcomeVisuals,
     icon: '👋',
