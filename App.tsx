@@ -14,7 +14,7 @@ type Rect = { top: number; left: number; width: number; height: number };
 const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const [isLaunching, setIsLaunching] = useState(false);
   const [targetRect, setTargetRect] = useState<Rect | null>(null);
-  const aiUniteCellRef = useRef<HTMLDivElement | null>(null);
+  const firstAgendaCellRef = useRef<HTMLDivElement | null>(null);
   const hasStartedRef = useRef(false);
   const launchTimeoutRef = useRef<number | null>(null);
 
@@ -36,7 +36,7 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
     if (!isLaunching) return;
 
     const readTargetRect = () => {
-      const rect = aiUniteCellRef.current?.getBoundingClientRect();
+      const rect = firstAgendaCellRef.current?.getBoundingClientRect();
       if (!rect) return;
 
       setTargetRect({
@@ -133,9 +133,9 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
             <span className="text-xl font-medium">AI Unite</span>
           </div>
           <div className="grid grid-cols-5 text-center text-[#12343f] text-xs md:text-sm relative">
-            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Welcome and pulse</div>
+            <div ref={firstAgendaCellRef} className="bg-[#bdd3da] py-2.5 border-r border-white/35">Welcome and pulse</div>
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Bernie</div>
-            <div ref={aiUniteCellRef} className="bg-[#c7dde3] py-2.5 font-medium relative border-r border-white/35">
+            <div className="bg-[#c7dde3] py-2.5 font-medium relative border-r border-white/35">
               Databricks AI
             </div>
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Support forum</div>
