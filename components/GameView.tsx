@@ -18,6 +18,8 @@ const PSEUDO_NODE_LABELS = [
   'Team Pulse',
   'Welcome Signal',
   'Pulse Check',
+  'Pulse Polls',
+  'Poll Results',
   'Bernie Channel',
   'Seb Bacon Spotlight',
   'Spotlight Queue',
@@ -410,7 +412,7 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome and pulse, Bernie with Seb Bacon, Databricks AI, open support forum, and thank you.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome and pulse, Pulse polls, Bernie with Seb Bacon, Databricks AI, open support forum, and thank you.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">

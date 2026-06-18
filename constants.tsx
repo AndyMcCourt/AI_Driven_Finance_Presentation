@@ -10,9 +10,24 @@ const welcomeVisuals = [
       'Joined by Oliver Healey from the AI adoption team.',
       'Drop-in sessions start next Thursday.',
       'Check the team pulse.',
+      'Pulse polls walkthrough.',
       'Spotlight on... Bernie',
       'Spotlight on... Databricks AI Assisted Development',
       'Open Floor'
+    ]
+  }
+];
+
+const pulseVisuals = [
+  {
+    id: 'pulse-polls-visual',
+    label: 'Pulse Polls',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1200',
+    description: 'Create space to go through the Pulse polls and discuss the signals coming back from the room.',
+    points: [
+      'Walk through the poll responses.',
+      'Highlight themes, surprises and areas of alignment.',
+      'Use the results to shape discussion for the rest of the session.'
     ]
   }
 ];
@@ -81,6 +96,7 @@ export const SEGMENTS: PresentationSegment[] = [
       'Joined by Oliver Healey from the AI adoption team.',
       'Drop-in sessions start next Thursday.',
       'Check the team pulse.',
+      'Pulse polls walkthrough.',
       'Spotlight on... Bernie',
       'Spotlight on... Databricks AI Assisted Development',
       'Open Floor'
@@ -89,6 +105,21 @@ export const SEGMENTS: PresentationSegment[] = [
     icon: '👋',
     status: 'available',
     coordinates: { x: 25, y: 30 }
+  },
+  {
+    id: 'pulse-polls',
+    title: 'Pulse',
+    strapline: 'Go through the polls.',
+    content: 'Review the Pulse poll results with the team and use them to guide the discussion.',
+    bullets: [
+      'Walk through the poll responses.',
+      'Call out the strongest themes and any surprises.',
+      'Capture discussion points to carry into the next segments.'
+    ],
+    visuals: pulseVisuals,
+    icon: '📊',
+    status: 'locked',
+    coordinates: { x: 42, y: 46 }
   },
   {
     id: 'bernie-spotlight',
@@ -101,7 +132,7 @@ export const SEGMENTS: PresentationSegment[] = [
     visuals: bernieVisuals,
     icon: '🔦',
     status: 'locked',
-    coordinates: { x: 50, y: 60 }
+    coordinates: { x: 58, y: 60 }
   },
   {
     id: 'databricks-ai-spotlight',
