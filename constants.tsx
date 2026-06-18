@@ -7,11 +7,12 @@ const welcomeVisuals = [
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
     description: 'Open AI Unite with a short welcome, team pulse and guest introduction.',
     points: [
-      'Welcome everyone to AI Unite.',
-      'Check the team pulse.',
-      'Introduce Oliver Healey from the AI adoption team.',
+      'Joined by Oliver Healey from the AI adoption team.',
       'Drop-in sessions start next Thursday.',
-      'Set up the spotlight segments.'
+      'Check the team pulse.',
+      'Spotlight on... Bernie',
+      'Spotlight on... Databricks AI Assisted Development',
+      'Open Floor'
     ]
   }
 ];
@@ -23,9 +24,7 @@ const bernieVisuals = [
     image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1200',
     description: 'Frame the Bernie spotlight with Seb Bacon and the key takeaways for the room.',
     points: [
-      'Introduce Bernie and Seb Bacon.',
-      'Share context and points of interest.',
-      'Capture questions and reactions.'
+      'Walkthrough from Seb Bacon on Bernie.'
     ]
   }
 ];
@@ -37,9 +36,10 @@ const databricksAiVisuals = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
     description: 'Explore Databricks AI opportunities, use cases and next steps for AI Unite.',
     points: [
-      'Introduce the Databricks AI topic.',
-      'Discuss practical use cases.',
-      'Agree areas to investigate next.'
+      'BEAM and Databricks',
+      'Finance EDW Data on Databricks',
+      'AI Assisted Development.',
+      'Practical Applications and Future Projects.'
     ]
   }
 ];
@@ -76,13 +76,15 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'welcome-and-pulse',
     title: 'Welcome and pulse',
     strapline: 'A quick welcome and team pulse.',
-    content: 'Welcome everyone to AI Unite, take a quick team pulse, introduce Oliver Healey and flag drop-in sessions starting next Thursday.',
+    content: 'Welcome everyone to AI Unite!',
     bullets: [
-      'Welcome the team.',
-      'Check the room pulse.',
       'Joined by Oliver Healey from the AI adoption team.',
-      'Drop-in sessions added from next Thursday.',
-      'Set up Bernie and Databricks AI.'
+      'Drop-in sessions start next Thursday.',
+      'Check the team pulse.',
+      'Spotlight on... Bernie',
+      'Spotlight on... Databricks AI Assisted Development',
+      'Open Floor'
+    ]
     ],
     visuals: welcomeVisuals,
     icon: '👋',
@@ -92,12 +94,10 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'bernie-spotlight',
     title: 'Spotlight on... Bernie (Seb Bacon)',
-    strapline: 'A focused team spotlight with Seb Bacon.',
-    content: 'Put the spotlight on Bernie with Seb Bacon and give the team space to understand the story, context and takeaways.',
+    strapline: 'A focused spotlight.',
+    content: 'A Spotlight from Seb on Bernie.',
     bullets: [
-      'Introduce Bernie and Seb Bacon.',
-      'Share the key context and points of interest.',
-      'Capture questions, reactions and follow-ups.'
+      'Food Finance - New FBP Agent'
     ],
     visuals: bernieVisuals,
     icon: '🔦',
@@ -108,11 +108,12 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'databricks-ai-spotlight',
     title: 'Spotlight on... Databricks AI',
     strapline: 'A practical look at Databricks AI.',
-    content: 'Explore Databricks AI and what it could mean for AI Unite workflows, data products and analytics.',
+    content: 'An example of Databricks use cases',
     bullets: [
-      'Introduce the Databricks AI topic.',
-      'Discuss potential use cases for AI Unite.',
-      'Agree any next steps or areas to investigate.'
+      'BEAM and Databricks',
+      'Finance EDW Data on Databricks',
+      'AI Assisted Development.',
+      'Practical Applications and Future Projects.'
     ],
     visuals: databricksAiVisuals,
     icon: '🤖',
