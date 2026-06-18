@@ -89,8 +89,8 @@ const thankYouVisuals = [
 export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'welcome-and-pulse',
-    title: 'Welcome and pulse',
-    strapline: 'A quick welcome and team pulse.',
+    title: 'Welcome,
+    strapline: 'A quick welcome.',
     content: 'Welcome everyone to AI Unite!',
     bullets: [
       'Joined by Oliver Healey from the AI adoption team.',
