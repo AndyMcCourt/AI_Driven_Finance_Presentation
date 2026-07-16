@@ -5,15 +5,39 @@ const welcomeVisuals = [
     id: 'ai-unite-welcome',
     label: 'Welcome',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
-    description: 'Open AI Unite with a short welcome, team pulse and guest introduction.',
+    description: 'Open AI Unite with a short welcome and preview of the session agenda.',
     points: [
-      'Joined by Oliver Healey from the AI adoption team.',
-      'Drop-in sessions start next Thursday.',
-      'Check the team pulse.',
-      'Pulse polls walkthrough.',
-      'Spotlight on... Databricks AI Assisted Development',
-      'Spotlight on... Bernie',
-      'Open Floor'
+      'Welcome everyone to AI Unite.',
+      'Set the context for the session.',
+      'Preview the spotlights, pulse poll and open support forum.'
+    ]
+  }
+];
+
+const pwcSpotlightVisuals = [
+  {
+    id: 'pwc-performance-management-visual',
+    label: 'PwC Spotlight',
+    image: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?auto=format&fit=crop&q=80&w=1200',
+    description: 'Spotlight from PwC on AI and the future of performance management.',
+    points: [
+      'PwC perspective on AI in performance management.',
+      'What may change in planning, insight and decision support.',
+      'Implications for finance teams and ways of working.'
+    ]
+  }
+];
+
+const hungryContextVisuals = [
+  {
+    id: 'very-hungry-context-visual',
+    label: 'The Very Hungry Context',
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=1200',
+    description: 'Spotlight from Pete Collinson and Alex Williams on GitHub Copilot and AI Tokenomics.',
+    points: [
+      'GitHub Copilot in practice.',
+      'AI Tokenomics and the economics of context.',
+      'Why context is hungry and how to feed it well.'
     ]
   }
 ];
@@ -23,7 +47,7 @@ const pulseVisuals = [
     id: 'pulse-polls-visual',
     label: 'Pulse Polls',
     image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1200',
-    description: 'Create space to go through the Pulse polls and discuss the signals coming back from the room.',
+    description: 'Create space to go through the Pulse poll and discuss the signals coming back from the room.',
     points: [
       'Walk through the poll responses.',
       'Highlight themes, surprises and areas of alignment.',
@@ -31,34 +55,6 @@ const pulseVisuals = [
     ]
   }
 ];
-
-const bernieVisuals = [
-  {
-    id: 'bernie-spotlight-visual',
-    label: 'Bernie Spotlight',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1200',
-    description: 'Frame the Bernie spotlight with Seb Bacon and the key takeaways for the room.',
-    points: [
-      'Walkthrough from Seb Bacon on Bernie.'
-    ]
-  }
-];
-
-const databricksAiVisuals = [
-  {
-    id: 'databricks-ai-visual',
-    label: 'Databricks AI',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
-    description: 'Explore Databricks AI opportunities, use cases and next steps for AI Unite.',
-    points: [
-      'BEAM and Databricks',
-      'Finance EDW Data on Databricks',
-      'AI Assisted Development.',
-      'Practical Applications and Future Projects.'
-    ]
-  }
-];
-
 
 const supportForumVisuals = [
   {
@@ -77,78 +73,76 @@ const supportForumVisuals = [
 const thankYouVisuals = [
   {
     id: 'thank-you-visual',
-    label: 'Thank You',
+    label: 'Close',
     image: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&q=80&w=1200',
-    description: 'Close AI Unite with a simple thank you.',
+    description: 'Close AI Unite with a simple wrap-up.',
     points: [
-      'Thank you.'
+      'Thank everyone for joining.',
+      'Confirm follow-ups and next session details.'
     ]
   }
 ];
 
 export const SEGMENTS: PresentationSegment[] = [
   {
-    id: 'welcome-and-pulse',
+    id: 'welcome',
     title: 'Welcome',
-    strapline: 'A quick welcome.',
-    content: 'Welcome everyone to AI Unite!',
+    strapline: 'Set the scene for the session.',
+    content: 'Welcome everyone to AI Unite and preview the session flow.',
     bullets: [
-      'Joined by Oliver Healey from the AI adoption team.',
-      'Drop-in sessions start next Thursday.',
-      'Check the team pulse.',
-      'Pulse polls walkthrough.',
-      'Spotlight on... Databricks AI Assisted Development',
-      'Spotlight on... Bernie',
-      'Open Floor'
+      'Welcome everyone to AI Unite.',
+      'Set the context for the session.',
+      'Preview: PwC, The Very Hungry Context, pulse poll, open support forum and close.'
     ],
     visuals: welcomeVisuals,
     icon: '👋',
     status: 'available',
-    coordinates: { x: 25, y: 30 }
+    coordinates: { x: 20, y: 30 }
   },
   {
-    id: 'pulse-polls',
-    title: 'Pulse',
-    strapline: 'Go through the polls.',
+    id: 'pwc-performance-management',
+    title: 'Spotlight from PwC',
+    strapline: 'AI on the future of performance management.',
+    content: 'PwC will share a spotlight on AI and the future of performance management.',
+    bullets: [
+      'PwC perspective on AI in performance management.',
+      'How performance cycles, insight and decision support may evolve.',
+      'What this could mean for finance teams.'
+    ],
+    visuals: pwcSpotlightVisuals,
+    icon: '📈',
+    status: 'locked',
+    coordinates: { x: 35, y: 44 }
+  },
+  {
+    id: 'very-hungry-context',
+    title: 'The Very Hungry Context',
+    strapline: 'GitHub Copilot and AI Tokenomics.',
+    content: 'Pete Collinson and Alex Williams will spotlight GitHub Copilot and AI Tokenomics: The Very Hungry Context.',
+    bullets: [
+      'GitHub Copilot and practical AI-assisted development.',
+      'AI Tokenomics and why context matters.',
+      'Lessons for getting better outputs from hungry AI tools.'
+    ],
+    visuals: hungryContextVisuals,
+    icon: '🍽️',
+    status: 'locked',
+    coordinates: { x: 55, y: 58 }
+  },
+  {
+    id: 'pulse-poll',
+    title: 'Pulse Poll',
+    strapline: 'Go through the poll.',
     content: 'Review the Pulse poll results with the team and use them to guide the discussion.',
     bullets: [
       'Walk through the poll responses.',
       'Call out the strongest themes and any surprises.',
-      'Capture discussion points to carry into the next segments.'
+      'Capture discussion points to carry into the support forum.'
     ],
     visuals: pulseVisuals,
     icon: '📊',
     status: 'locked',
-    coordinates: { x: 42, y: 46 }
-  },
-  {
-    id: 'databricks-ai-spotlight',
-    title: 'Spotlight on... Databricks AI',
-    strapline: 'A practical look at Databricks AI.',
-    content: 'An example of Databricks use cases',
-    bullets: [
-      'BEAM and Databricks',
-      'Finance EDW Data on Databricks',
-      'AI Assisted Development.',
-      'Practical Applications and Future Projects.'
-    ],
-    visuals: databricksAiVisuals,
-    icon: '🤖',
-    status: 'locked',
-    coordinates: { x: 58, y: 60 }
-  },
-  {
-    id: 'bernie-spotlight',
-    title: 'Spotlight on... Bernie (Seb Bacon)',
-    strapline: 'A focused spotlight.',
-    content: 'A Spotlight from Seb on Bernie.',
-    bullets: [
-      'Food Finance - New FBP Agent'
-    ],
-    visuals: bernieVisuals,
-    icon: '🔦',
-    status: 'locked',
-    coordinates: { x: 75, y: 30 }
+    coordinates: { x: 70, y: 42 }
   },
   {
     id: 'open-support-forum',
@@ -166,12 +160,14 @@ export const SEGMENTS: PresentationSegment[] = [
     coordinates: { x: 45, y: 78 }
   },
   {
-    id: 'thank-you',
-    title: 'Thank You',
-    strapline: 'Thank you.',
-    content: 'Thank you.',
+    id: 'close',
+    title: 'Close',
+    strapline: 'Wrap up and next steps.',
+    content: 'Close out the session with thanks, follow-ups and next steps.',
     bullets: [
-      'Thank you.'
+      'Thank everyone for joining.',
+      'Confirm follow-ups from the support forum.',
+      'Share any next session details.'
     ],
     visuals: thankYouVisuals,
     icon: '🙏',
