@@ -5,11 +5,11 @@ const welcomeVisuals = [
     id: 'ai-unite-welcome',
     label: 'Welcome',
     image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1200',
-    description: 'Open AI Unite with a short welcome and preview of the session agenda.',
+    description: 'Open AI Unite with a short welcome and clear agenda for the remaining session segments.',
     points: [
-      'Welcome everyone to AI Unite.',
-      'Set the context for the session.',
-      'Preview the spotlights, pulse poll and open support forum.'
+      'Spotlight from PwC: AI and the future of performance management.',
+      'The Very Hungry Context: GitHub Copilot and AI Tokenomics.',
+      'Pulse Poll, Open Support Forum and Close.'
     ]
   }
 ];
@@ -87,12 +87,14 @@ export const SEGMENTS: PresentationSegment[] = [
   {
     id: 'welcome',
     title: 'Welcome',
-    strapline: 'Set the scene for the session.',
-    content: 'Welcome everyone to AI Unite and preview the session flow.',
+    strapline: 'Agenda for the rest of the session.',
+    content: 'Welcome everyone to AI Unite. Here is the agenda for the remaining segments:',
     bullets: [
-      'Welcome everyone to AI Unite.',
-      'Set the context for the session.',
-      'Preview: PwC, The Very Hungry Context, pulse poll, open support forum and close.'
+      'Spotlight from PwC: AI and the future of performance management.',
+      'The Very Hungry Context: GitHub Copilot and AI Tokenomics.',
+      'Pulse Poll: review responses and discussion signals.',
+      'Open Support Forum: questions, support needs and shared problem solving.',
+      'Close: wrap-up, follow-ups and next steps.'
     ],
     visuals: welcomeVisuals,
     icon: '👋',
