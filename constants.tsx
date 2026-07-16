@@ -105,11 +105,11 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'pwc-performance-management',
     title: 'Spotlight from PwC',
     strapline: 'AI on the future of performance management.',
-    content: 'PwC will share a spotlight on AI and the future of performance management.',
+    content: 'Realising Value in the Future of Finance',
     bullets: [
-      'PwC perspective on AI in performance management.',
-      'How performance cycles, insight and decision support may evolve.',
-      'What this could mean for finance teams.'
+      'CEO Survey',
+      'The role of Finance',
+      'Changes in Economics'
     ],
     visuals: pwcSpotlightVisuals,
     icon: '📈',
@@ -120,11 +120,11 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'very-hungry-context',
     title: 'The Very Hungry Context',
     strapline: 'GitHub Copilot and AI Tokenomics.',
-    content: 'Pete Collinson and Alex Williams will spotlight GitHub Copilot and AI Tokenomics: The Very Hungry Context.',
+    content: 'GitHub Copilot and AI Tokenomics',
     bullets: [
-      'GitHub Copilot and practical AI-assisted development.',
-      'AI Tokenomics and why context matters.',
-      'Lessons for getting better outputs from hungry AI tools.'
+      'Alex Williams & Pete Collinson',
+      'Cost Observations from AI Token usage',
+      'Developer observations from GitHub Copilot Usage'
     ],
     visuals: hungryContextVisuals,
     icon: '🍽️',
