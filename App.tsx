@@ -132,14 +132,13 @@ const LandingPage: React.FC<{ onStart: () => void }> = ({ onStart }) => {
             </div>
             <span className="text-xl font-medium">AI Unite</span>
           </div>
-          <div className="grid grid-cols-5 text-center text-[#12343f] text-xs md:text-sm relative">
-            <div ref={firstAgendaCellRef} className="bg-[#bdd3da] py-2.5 border-r border-white/35">Welcome and pulse</div>
-            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Databricks AI</div>
-            <div className="bg-[#c7dde3] py-2.5 font-medium relative border-r border-white/35">
-              Bernie
-            </div>
+          <div className="grid grid-cols-6 text-center text-[#12343f] text-xs md:text-sm relative">
+            <div ref={firstAgendaCellRef} className="bg-[#bdd3da] py-2.5 border-r border-white/35">Welcome</div>
+            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">PwC spotlight</div>
+            <div className="bg-[#c7dde3] py-2.5 font-medium relative border-r border-white/35">The Very Hungry Context</div>
+            <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Pulse poll</div>
             <div className="bg-[#bdd3da] py-2.5 border-r border-white/35">Support forum</div>
-            <div className="bg-[#c7dde3] py-2.5 font-medium">Thank you</div>
+            <div className="bg-[#c7dde3] py-2.5 font-medium">Close</div>
           </div>
         </div>
 

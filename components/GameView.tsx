@@ -15,20 +15,20 @@ const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`
 const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
 
 const PSEUDO_NODE_LABELS = [
-  'Team Pulse',
   'Welcome Signal',
-  'Pulse Check',
-  'Pulse Polls',
+  'PwC Spotlight',
+  'Performance Management',
+  'Future of Performance',
+  'GitHub Copilot',
+  'AI Tokenomics',
+  'Hungry Context',
+  'Context Window',
+  'Pulse Poll',
   'Poll Results',
-  'Bernie Channel',
-  'Seb Bacon Spotlight',
-  'Spotlight Queue',
-  'Databricks Hub',
-  'AI Lab',
-  'Lakehouse Signal',
-  'Workflow Ideas',
-  'Insight Queue',
-  'Follow-up Log'
+  'Support Forum',
+  'Question Queue',
+  'Follow-up Log',
+  'Closing Signal'
 ];
 
 const getActivationCardTitle = (title: string) => title.split(':')[0].trim();
@@ -412,7 +412,7 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome and pulse, Pulse polls, Databricks AI, Bernie with Seb Bacon, open support forum, and thank you.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome, PwC spotlight on AI and the future of performance management, The Very Hungry Context, pulse poll, open support forum, and close.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">
