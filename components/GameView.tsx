@@ -15,20 +15,14 @@ const MNS_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/MnS%20Square%20Snip.JPG`
 const RNA_LOGO_SRC = `${import.meta.env.BASE_URL}Assets/RnA%20Logo.png`;
 
 const PSEUDO_NODE_LABELS = [
-  'Welcome Signal',
-  'PwC Spotlight',
-  'Performance Management',
-  'Future of Performance',
-  'GitHub Copilot',
-  'AI Tokenomics',
-  'Hungry Context',
-  'Context Window',
-  'Pulse Poll',
-  'Poll Results',
-  'Support Forum',
-  'Question Queue',
-  'Follow-up Log',
-  'Closing Signal'
+  'Engagement Poll',
+  'AI Champions Engagement',
+  'New Hosting Rota',
+  'Democratising AI Unite',
+  'BSC AI Champions',
+  'Central AI Team',
+  'Guest Speaker',
+  'Xav Osei',
 ];
 
 const getActivationCardTitle = (title: string) => title.split(':')[0].trim();
@@ -245,7 +239,7 @@ const GameView: React.FC = () => {
           <img src={MNS_LOGO_SRC} alt="MnS Square Snip" className="h-12 w-auto object-contain" />
           <div>
             <h1 className="text-xl lg:text-2xl font-black tracking-tight uppercase">AI Unite</h1>
-            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">18TH JUNE 2026 // AI UNITE</p>
+            <p className="text-xs text-cyan-400/70 font-bold tracking-wider">24TH SEPTEMBER 2026 // AI UNITE</p>
           </div>
         </div>
 
@@ -412,7 +406,7 @@ const GameView: React.FC = () => {
               <span className="w-2 h-2 bg-cyan-300 rounded-full animate-ping" />
               CURRENT OBJECTIVE
             </h3>
-            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: welcome, PwC spotlight on AI and the future of performance management, The Very Hungry Context, pulse poll, open support forum, and close.</p>
+            <p className="text-sm text-cyan-50/80 leading-relaxed">Move through AI Unite: Engagement Poll, New Hosting Rota, Spotlight on BSC AI Champions, and Central AI Team with guest speaker Xav Osei.</p>
           </div>
 
           <div className="flex-1 flex flex-col gap-4">
@@ -444,7 +438,7 @@ const GameView: React.FC = () => {
       </main>
 
       <footer className="min-h-10 border-t border-cyan-400/20 bg-slate-900/35 backdrop-blur-xl flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 md:px-6 py-2 text-xs font-bold text-cyan-300/60">
-        <div>AI UNITE // 18 JUN 2026</div>
+        <div>AI UNITE // 24 SEP 2026</div>
         <div className="flex gap-4">
           <span>LAT: 53.4808° N</span>
           <span>LON: 2.2426° W</span>
